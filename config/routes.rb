@@ -2,5 +2,6 @@ Rails.application.routes.draw do
   resources :blocks
   resources :cohorts
   resources :users
+  resource :session, only: [:new, :destroy, :create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
