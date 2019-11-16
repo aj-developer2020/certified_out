@@ -32,7 +32,7 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     alias_action :create, :read, :update, to: :cru
     alias_action  :read, :update, to: :ru
-
+    # alias_action :show, :to => :show
     # if user.role===2 #ADMIN
     #   can :manage, :all
     # end
@@ -40,11 +40,19 @@ class Ability
     #   can :read, :all
     # end
 
-    can :read, :all # permissions for every user, even if not logged in    
+  
+    # if user.role===1 #ADMIN
+    #   can :read, :all
+    
+      
+    # can :read, :all # permissions for every user, even if not logged in    
+
     if user.present?  # additional permissions for logged in users (they can manage their posts)
-      can :manage, Post, user_id: user.id 
-      if user.admin?  # additional permissions for administrators
+      can :show, :update, User, user_id: user.id 
+      if user.role===2  # additional permissions for administrators
         can :manage, :all
+      elsif user.role===1
+        can :read, :all
       end
     end
 
