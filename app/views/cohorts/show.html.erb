@@ -42,3 +42,53 @@
 
 <%= link_to 'Edit', edit_cohort_path(@cohort) %> |
 <%= link_to 'Back', cohorts_path %>
+
+
+ <%= form_with(model: [@cohort, @block], local: true) do |f| %>
+<% if @block.errors.any? %>
+  <ul>
+    <% @block.errors.full_messages.each do |msg|%>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="form-group">
+  <%= f.text_area(
+  :title,
+  cols: 50,
+  rows: 5,
+  placeholder: "Create a new Block",
+  class: "form-control"
+  ) %>
+</div>
+<%= f.submit "New Block" %>
+<% end %>
+
+<hr />
+
+<ul class="block-list">
+  <% @blocks.each do |block| %>
+    <li>
+      <p>
+        <%= block.title %> <br />
+        <#% if can? :crud, block %>
+          <small>
+            <%= link_to(
+              "Delete",
+              cohort_block_path(@cohort, block),
+              method: :delete,
+              data: {
+                confirm: "Are you sure?"
+              }
+            ) %>
+          </small>
+        <#% end %>
+        |
+        <small>
+          Block <%= time_ago_in_words(block.created_at) %> ago
+        </small>
+      </p>
+    </li>
+  <% end %>
+</ul> 

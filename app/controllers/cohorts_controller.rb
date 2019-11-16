@@ -1,5 +1,6 @@
 class CohortsController < ApplicationController
-  before_action :set_cohort, only: [:show, :edit, :update, :destroy]
+  before_action :find_cohort, only: [:show, :edit, :update, :destroy]
+
 
   # GET /cohorts
   # GET /cohorts.json
@@ -10,6 +11,12 @@ class CohortsController < ApplicationController
   # GET /cohorts/1
   # GET /cohorts/1.json
   def show
+     # For the 'form_with' helper
+     @block = Block.new
+     # For the list of answers
+     @blocks = @cohort.blocks.order(created_at: :desc)
+     @registation = @cohort.registrations.find_by(user: current_user)
+
   end
 
   # GET /cohorts/new
@@ -63,7 +70,7 @@ class CohortsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_cohort
+    def find_cohort
       @cohort = Cohort.find(params[:id])
     end
 

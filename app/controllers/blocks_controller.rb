@@ -1,5 +1,5 @@
 class BlocksController < ApplicationController
-  before_action :set_block, only: [:show, :edit, :update, :destroy]
+  before_action :find_block, only: [:show, :edit, :update, :destroy]
 
   # GET /blocks
   # GET /blocks.json
@@ -21,20 +21,19 @@ class BlocksController < ApplicationController
   def edit
   end
 
-  # POST /blocks
-  # POST /blocks.json
   def create
+    @cohort = Cohort.find(params[:cohort_id])
     @block = Block.new(block_params)
+    @block.cohort = @cohort
+    @block.user = current_user
 
-    respond_to do |format|
-      if @block.save
-        format.html { redirect_to @block, notice: 'Block was successfully created.' }
-        format.json { render :show, status: :created, location: @block }
-      else
-        format.html { render :new }
-        format.json { render json: @block.errors, status: :unprocessable_entity }
-      end
+    if @block.save
+      redirect_to cohort_path, notice: 'Block was successfully created.' 
+    else
+      @blocks = @cohort.blocks.order(created_at: :desc)
+      render 'cohorts/show'
     end
+    
   end
 
   # PATCH/PUT /blocks/1
@@ -63,7 +62,7 @@ class BlocksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_block
+    def find_block
       @block = Block.find(params[:id])
     end
 
