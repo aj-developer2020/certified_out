@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :update, :destroy, :edot_password, :update_password]
   before_action :correct_user, only: [:edit, :update]
   def index
     @users = User.all
@@ -26,8 +26,8 @@ class UsersController < ApplicationController
 
     if @user.save
       redirect_to @user, notice: 'User was successfully created.' 
-      # session[:user_id] = @user.id
-      # redirect_to root_path
+      session[:user_id] = @user.id
+      redirect_to root_path
     else
       render :new
     end
@@ -37,14 +37,13 @@ class UsersController < ApplicationController
     user=current_user
     if(user.role===2 && user.update(user_params)
         redirect_to user_path(user), notice: 'Profile changes saved successfully as admin user.'
-
     elsif(user?(@user) && user.update(params.require(:user).permit(:email, :first_name, :last_name, :picture_url, :phone))
       redirect_to user_path(user), notice: 'Profile changes saved successfully.'
-      
     else 
       render :edit
     end
   end
+
   def edit_password
     @user=current_user
   end
@@ -65,9 +64,9 @@ class UsersController < ApplicationController
     end
   end
   def destroy
-    redirect_to(root_path) unless current_user.admin?
+    redirect_to(root_path), notice: 'Only admin is authorized to do this.' unless current_user.role===2
     @user.destroy
-    redirect_to root_path, notice: 'User was successfully destroyed.' }
+    redirect_to root_path, notice: 'User was successfully destroyed.' 
   end
 
   def edit_password
