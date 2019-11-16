@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @cohort.title %>
+</p>
+
+<p>
+  <strong>Slack:</strong>
+  <%= @cohort.slack %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @cohort.description %>
+</p>
+
+<p>
+  <strong>Picture url:</strong>
+  <%= @cohort.picture_url %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @cohort.status %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @cohort.program %>
+</p>
+
+<p>
+  <strong>Is archived:</strong>
+  <%= @cohort.is_archived %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @cohort.start_date %>
+</p>
+
+<%= link_to 'Edit', edit_cohort_path(@cohort) %> |
+<%= link_to 'Back', cohorts_path %>
