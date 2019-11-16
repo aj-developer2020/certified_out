@@ -18,7 +18,7 @@
 
 <tbody>
 <% @users.each do |user| %>
-  <% if can? :cru, user%>
+  <% if can? :index, user%>
       <tr>
         <td><%= user.role %></td>
         <td><%= user.email %></td>

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user! 
   before_action :find_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
   before_action :correct_user, only: [:edit, :update]
 
-  before_action :authorize_teacher!, only: [:index]
+  before_action :authorize!, only: [:index]
   def index
     @users = User.all
     # we will probably have a way to sort the index based on if they search by certain params such as, user role, either here, or in the view. 
@@ -111,11 +111,9 @@ class UsersController < ApplicationController
       params.require(:user).permit(:role, :email, :first_name, :last_name, :password_digest, :picture_url, :phone, :is_active)
     end
 
-    def authorize_teacher!
-        p current_user
-      if (!(can?(:cru, current_user)))
-        p '-------------------'
-        p 'authorize'
+    def authorize!
+      if (!(can?(:index, current_user)))
+        p '--------------------------------'
         p current_user
         redirect_to root_path
       end
