@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :destroy, :edot_password, :update_password]
+  before_action :authenticate_user!
+  before_action :find_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
   before_action :correct_user, only: [:edit, :update]
+
+  before_action :authorize_teacher!, only: [:index]
   def index
     @users = User.all
     # we will probably have a way to sort the index based on if they search by certain params such as, user role, either here, or in the view. 
   end
 
   def show
-    @user=current_user
   end
 
   # GET /users/new
@@ -25,9 +27,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.' 
       session[:user_id] = @user.id
-      redirect_to root_path
+      redirect_to @user, notice: 'User was successfully created.' 
     else
       render :new
     end
@@ -35,10 +36,12 @@ class UsersController < ApplicationController
 
   def update
     user=current_user
-    if(user.role===2 && user.update(user_params)
-        redirect_to user_path(user), notice: 'Profile changes saved successfully as admin user.'
-    elsif(user?(@user) && user.update(params.require(:user).permit(:email, :first_name, :last_name, :picture_url, :phone))
-      redirect_to user_path(user), notice: 'Profile changes saved successfully.'
+    if(user.role===2 && user.update(user_params))
+      flash[:notice] ='Profile changes saved successfully as admin user.'
+      redirect_to user_path(user)
+    elsif(user.update(params.require(:user).permit(:email, :first_name, :last_name, :picture_url, :phone)))
+      flash[:notice] = 'Profile changes saved successfully.'
+      redirect_to user_path(user)
     else 
       render :edit
     end
@@ -63,10 +66,16 @@ class UsersController < ApplicationController
       render :edit_password
     end
   end
+
   def destroy
-    redirect_to(root_path), notice: 'Only admin is authorized to do this.' unless current_user.role===2
-    @user.destroy
-    redirect_to root_path, notice: 'User was successfully destroyed.' 
+    if (current_user.role!=2)
+      flash[:notice] = 'Only admin is authorized to do this.'
+      redirect_to(root_path)
+    else
+      @user.destroy
+      flash[:notice] = 'User was successfully destroyed.' 
+      redirect_to root_path
+    end
   end
 
   def edit_password
@@ -100,5 +109,15 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:role, :email, :first_name, :last_name, :password_digest, :picture_url, :phone, :is_active)
+    end
+
+    def authorize_teacher!
+        p current_user
+      if (!(can?(:cru, current_user)))
+        p '-------------------'
+        p 'authorize'
+        p current_user
+        redirect_to root_path
+      end
     end
 end
