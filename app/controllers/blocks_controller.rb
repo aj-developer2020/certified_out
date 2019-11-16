@@ -25,7 +25,7 @@ class BlocksController < ApplicationController
     @cohort = Cohort.find(params[:cohort_id])
     @block = Block.new(block_params)
     @block.cohort = @cohort
-    @block.user = current_user
+    # @block.user = current_user
 
     if @block.save
       redirect_to cohort_path, notice: 'Block was successfully created.' 

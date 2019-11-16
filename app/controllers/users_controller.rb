@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :find_user, only: [:show, :edit, :update, :destroy, :edit_password, :update_password]
   before_action :correct_user, only: [:edit, :update]
 
