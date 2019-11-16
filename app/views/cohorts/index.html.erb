@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cohorts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Slack</th>
+      <th>Description</th>
+      <th>Picture url</th>
+      <th>Status</th>
+      <th>Program</th>
+      <th>Is archived</th>
+      <th>Start date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cohorts.each do |cohort| %>
+      <tr>
+        <td><%= cohort.title %></td>
+        <td><%= cohort.slack %></td>
+        <td><%= cohort.description %></td>
+        <td><%= cohort.picture_url %></td>
+        <td><%= cohort.status %></td>
+        <td><%= cohort.program %></td>
+        <td><%= cohort.is_archived %></td>
+        <td><%= cohort.start_date %></td>
+        <td><%= link_to 'Show', cohort %></td>
+        <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
+        <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cohort', new_cohort_path %>
