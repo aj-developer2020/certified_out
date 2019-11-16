@@ -1,10 +1,13 @@
 <!-- app/views/sessions/new.html.erb -->
 <div class="background-img-container">
 
-  <div class="sign-in-container">
-    <div id="logo-container">
+<div class="sign-in-container">
+  <div class="form-container card">
+      <div class="form-logo">
       <%= image_tag('certified.out_logo.png') %>
-    </div>
+      </div>
+      
+
     <div class="sign-in-fields">
       <% if @user.errors.any? %>
           <ul>
@@ -27,6 +30,7 @@
           
             <%= f.submit "Log In", class: "btn"  %>
       <% end %>
+        </div>
     </div>
   </div>
 </div>
