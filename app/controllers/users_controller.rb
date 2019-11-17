@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     redirect_to root_path unless can?(:update, current_user)
-    @user=current_user
+    # @user=current_user
   end
 
   # POST /users
@@ -39,14 +39,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    redirect_to root_path unless can?(:update, current_user)
-    user=current_user
-    if(user.role===2 && user.update(user_params))
+    updating_user=User.find_by(id: params.require(:id))
+    redirect_to root_path unless can?(:update, updating_user)
+
+    if(current_user.role===2 && updating_user.update(user_params))
       flash[:notice] ='Profile changes saved successfully as admin user.'
-      redirect_to user_path(user)
-    elsif(user.update(params.require(:user).permit(:email, :first_name, :last_name, :picture_url, :phone)))
+      redirect_to user_path(updating_user)
+    elsif(current_user.update(params.require(:user).permit(:email, :first_name, :last_name, :picture_url, :phone)))
       flash[:notice] = 'Profile changes saved successfully.'
-      redirect_to user_path(user)
+      redirect_to user_path(updating_user)
     else 
       render :edit
     end
@@ -54,7 +55,7 @@ class UsersController < ApplicationController
 
   def edit_password
     redirect_to root_path unless can?(:edit_password, current_user)
-    @user=current_user
+    # @user=current_user
   end
 
   def update_password
@@ -81,7 +82,7 @@ class UsersController < ApplicationController
     else
       @user.destroy
       flash[:notice] = 'User was successfully destroyed.' 
-      redirect_to root_path
+      redirect_to users_path
     end
   end
 

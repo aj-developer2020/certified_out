@@ -51,22 +51,10 @@
     </p>
     
     
+  </div> 
+</div>
+<% if can? :edit, @user %>
+  <div class="text-center py-5">
+      <%= link_to 'Edit', edit_user_path(@user), class: "btn" %>
   </div>
-  
-</div>
-<div class="text-center py-5">
-    <%= link_to 'Edit', edit_user_path(@user), class: "btn" %>
-</div>
-
-
-
-
-<!-- <p>
-  <strong>Password digest:</strong>
-  <%# @user.password_digest %>
-</p> -->
-
-
-
-
-
+<%end%>

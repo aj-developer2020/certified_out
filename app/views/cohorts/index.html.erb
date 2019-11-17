@@ -2,7 +2,9 @@
 
 <h1>Cohorts</h1>
 
+<br>
 <table class="table">
+
   <thead>
     <tr>
       <th>Title</th>
@@ -12,8 +14,8 @@
       <th>Status</th>
       <th>Program</th>
 
-      <th>Start date</th>
-      <th colspan="3">Actions</th>
+      <th>Start Date</th>
+      <th>Actions</th>
     </tr>
   </thead>
 
@@ -35,14 +37,21 @@
       <% end %></td>
         <td><%= cohort.program %></td>
         <td><%= cohort.start_date %></td>
+        <% if can? :show, cohort%>
         <td><%= link_to 'Show', cohort %></td>
+        <% end %>
+        <% if can? :edit, cohort%>
         <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
+        <% end %>
+        <% if can? :destroy, cohort%>
         <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if can? :new , @cohort%>
 <%= link_to 'New Cohort', new_cohort_path %>
+<% end %>

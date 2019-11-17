@@ -1,47 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
+
+<br>
+
 <table class="table">
+
 <thead>
 <tr>
 <th scope="col">Role</th>
-<th scope="col" style="width: 22%">Email</th>
-
+<th scope="col">Email</th>
 <th scope="col">Name</th>
-
-<th scope="col" >Phone</th>
-<th scope="col">Is active</th>
-<th scope="col" style="width: 17%">Actions</th>
+<th scope="col">Phone</th>
+<th scope="col" class="user-status">Status</th>
+<th scope="col">Actions</th>
 </tr>
 </thead>
-
-<table class="table">
 <% @users.each do |user| %>
   <% if can? :index, user%>
       <tr>
-        <td><% if user.role == 0 %>
+      <td class="td-user-role"><% if user.role == 0 %>
         Student
       <% elsif user.role == 1 %>
         Instructor
       <% else %>
         Admin
       <% end %></td>
-        <td><%= user.email %></td>
-        <td><%= user.first_name %> <%= user.last_name %></td>
-        <td><%= user.phone %></td>
-        <td> <% if user.is_active %>
+        <td class="td-user-email"><%= user.email %></td>
+        <td class="td-user-name"><%= user.first_name %> <%= user.last_name %></td>
+        <td class="td-user-phone"><%= user.phone %></td>
+        <td class="td-user-active"> <% if user.is_active %>
             <p class="active"> Active </p>
         <% else %>
             <p class="inactive"> Inactive </p>
         <% end %></td>
         <% if can? :show, user%>
-          <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Show', user %>
         <% end %>
         <% if can? :edit, user%>
-          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <%= link_to 'Edit', edit_user_path(user) %>
         <% end %>
         <% if can? :edit, user%>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
