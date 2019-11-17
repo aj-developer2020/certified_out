@@ -1,9 +1,10 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Alata|Lato&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Public+Sans&display=swap');
 
 body {
   background-color: rgb(211, 211, 211);
+  font-family: 'Public Sans', sans-serif;
 }
 
 .body-container {
@@ -154,4 +155,12 @@ a:hover {
 .home-text {
   background-color: rgba(0, 0, 0, 0.308);
   min-height: inherit;
+}
+
+.active {
+  color: green;
+}
+
+.inactive {
+  color: red;
 }

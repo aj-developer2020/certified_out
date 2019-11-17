@@ -30,9 +30,9 @@
         <td><%= user.first_name %> <%= user.last_name %></td>
         <td><%= user.phone %></td>
         <td> <% if user.is_active %>
-                Active 
+            <p class="active"> Active </p>
         <% else %>
-                Inactive
+            <p class="inactive"> Inactive </p>
         <% end %></td>
         <% if can? :show, user%>
           <td><%= link_to 'Show', user %></td>
