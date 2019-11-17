@@ -125,7 +125,19 @@ a:hover {
   color: white;
 }
 
-.home-bg {
+.user-show {
+  padding: 5px 30px;
+}
+
+#profile-photo {
+  width: 250px;
+  height: auto;
+}
+
+#user-info {
+  text-align: left;
+
+  .home-bg {
   background: url('home-bg');
   background-size: cover;
   min-height: 100vh;
