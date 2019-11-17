@@ -28,7 +28,7 @@
       <a class="btn btn-light" href="/" role="button">Home</a>
       <a class="btn btn-light" href="/users" role="button">Students</a>
       <a class="btn btn-light" href="/cohorts" role="button">Cohorts</a>
-      <a class="btn btn-light" href="/users/:id" role="button">Profile</a>
+      <%= link_to "Profile", user_path(current_user.id), class: "btn btn-light" %>
 
       <% if user_signed_in?%>
 <%= link_to "Sign Out", session_path, method: :delete, class: "btn btn-light",
