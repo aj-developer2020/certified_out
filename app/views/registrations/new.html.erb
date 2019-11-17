@@ -1,0 +1,30 @@
+<%= form_with(model: [:cohort, @registration], method: :post, local: true) do |form| %>
+
+  <% @users.each do |student| %>
+    <% if student.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if(Registration.exists?(user_id: student.id, cohort_id: @cohort.id)) %>
+      <%a= true%>
+    <% else %>
+      <%a= false%>
+    <% end %>
+    
+    <div class="field">
+      <%= form.label :"#{student.id}", "#{student.first_name}" %>
+      <%= form.check_box :"#{student.id}", {:checked => a} %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
