@@ -1,7 +1,19 @@
 @import "bootstrap";
 
 body {
-  background-color: silver;
+  background-color: rgb(211, 211, 211);
+  font-family: 'Public Sans', sans-serif;
+}
+
+.window-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.body-container {
+  padding: 2em;
+  position: relative;
+  min-height: 100vh;
 }
 
 .btn.btn-light {
