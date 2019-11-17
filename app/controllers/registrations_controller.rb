@@ -6,44 +6,36 @@ class RegistrationsController < ApplicationController
 
   def new
     @users = User.where(role: 0).all
+    @registration = Registration.new
+    @registrations = Registration.where(cohort_id: @cohort.id)
+    puts "------------------------"
+    p @registrations
+    puts "------------------------"
+
   end
 
   def create
-    # registration = Registration.new(cohort: @cohort, user: current_user)
-    # if registration.save
-    #   flash[:success] = "Cohort Registered"
-    # else
-    #   flash[:danger] = registration.errors.full_messages.join(", ")
-    # end
-    # redirect_to cohort_path(@cohort)
-    @users = User.where(params.student_name == 1).all
-
-    puts "!!!!!"
-    puts @users
+    registrations = params.require(:registration)
+    registrations.each do |user_id, add_user|
+      user_id = user_id.to_i
+      add_user = add_user.to_i
+      puts user_id
+      puts add_user
+      if(add_user==1)
+        register = Registration.new(user_id: user_id, cohort_id: @cohort.id)
+        if register.save
+          puts "SAVED"
+        end
+      elsif(Registration.exists?(user_id: user_id, cohort_id: @cohort.id))
+        Registration.where(user_id:user_id, cohort_id:@cohort.id).destroy_all
+      end
+    end
+    redirect_to @cohort
   end
-
-  # def destroy
-  #   like = current_user.likes.find params[:id]
-  #   if can? :destroy, like
-  #     like.destroy
-  #     flash[:success] = "Question unliked"
-  #   else
-  #     flash[:alert] = "Can't delete like"
-  #   end
-  #   redirect_to question_path(like.question)
-  # end
 
 
   private
   def find_cohort
     @cohort = Cohort.find(params[:cohort_id])
   end
-
-  # def authorize_user!
-  #   unless can? :like, @question
-  #     flash[:danger] = "Don't be a narcissist"
-  #     redirect_to question_path(@question)
-  #   end
-  # end
-
 end
