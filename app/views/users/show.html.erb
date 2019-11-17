@@ -1,16 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container d-flex flex-sm-column flex-md-row ">
+<div class="container d-flex flex-sm-column flex-md-row justify-content-center">
   <div class="user-show">
-    
     <% if @user.picture_url %>
       <img src="<%=@user.picture_url%>" id="profile-photo">
     <% else %>
       <%= image_tag("profile-image-placeholder.png", id: "profile-photo")%>
     <% end %> 
-    
   </div>
-  <div class="user-show w-100" id="user-info">
+
+  <div class="user-show" id="user-info">
     <p>
       <strong>First name:</strong>
       <%= @user.first_name %>
@@ -52,25 +51,10 @@
     </p>
     
     
-  </div>
-  
+  </div> 
 </div>
-
 <% if can? :edit, @user %>
-  <div class="container col-3">
-      <%= link_to 'Edit', edit_user_path(@user), class: "button" %>
+  <div class="text-center py-5">
+      <%= link_to 'Edit', edit_user_path(@user), class: "btn" %>
   </div>
 <%end%>
-
-
-
-
-<!-- <p>
-  <strong>Password digest:</strong>
-  <%# @user.password_digest %>
-</p> -->
-
-
-
-
-
