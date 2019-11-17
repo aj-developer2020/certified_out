@@ -12,11 +12,10 @@ body {
   background-color: white;
 }
 
-.sign-in-nav {
-  display: flex;
-  flex-direction: row;
-  justify-items: right;
-}
+// .btn.btn-light:hover {
+//   color: white;
+//   background-color: #64182F;
+// }
 
 .nav-link:hover {
   color: #64182F;
@@ -28,20 +27,32 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #64182F;
+  text-decoration: none;
+}
+
 .navbar.navbar-default {
   display: flex;
 
   color: #64182F;
   flex-direction: row;
+  justify-content: right;
+}
+.login-nav {
+  display: flex;
+  justify-content: right;
 }
 
 
 .nav.navbar-nav {
   display: flex;
   flex-direction: row;
-  width: 50%;
-  justify-content: space-evenly;
+  width: 75%;
+  height: 124px;
+  justify-content: flex-end;
   background-color: white;
+  align-items: center;
 }
 
 .sign-in-container {
