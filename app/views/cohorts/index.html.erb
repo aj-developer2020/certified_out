@@ -1,51 +1,57 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Cohorts</h1>
-<<<<<<< Updated upstream
 
-<table>
-=======
 <br>
 <table class="table">
->>>>>>> Stashed changes
+
   <thead>
     <tr>
       <th>Title</th>
       <th>Slack</th>
       <th>Description</th>
-      <th>Picture url</th>
+
       <th>Status</th>
       <th>Program</th>
-<<<<<<< Updated upstream
-      <th>Is archived</th>
-      <th>Start date</th>
-      <th colspan="3"></th>
-=======
+
       <th>Start Date</th>
       <th>Actions</th>
->>>>>>> Stashed changes
     </tr>
   </thead>
 
   <tbody>
     <% @cohorts.each do |cohort| %>
       <tr>
-        <td><%= cohort.title %></td>
+        <td><%= link_to cohort.title, cohort %></td>
         <td><%= cohort.slack %></td>
         <td><%= cohort.description %></td>
-        <td><%= cohort.picture_url %></td>
-        <td><%= cohort.status %></td>
+
+        <td><% if cohort.status == 0 %>
+        Ongoing
+      <% elsif cohort.status == 1 %>
+        Completed
+      <% elsif cohort.status == 2%>
+        Setup
+        <% else %>
+        Archived
+      <% end %></td>
         <td><%= cohort.program %></td>
-        <td><%= cohort.is_archived %></td>
         <td><%= cohort.start_date %></td>
+        <% if can? :show, cohort%>
         <td><%= link_to 'Show', cohort %></td>
+        <% end %>
+        <% if can? :edit, cohort%>
         <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
+        <% end %>
+        <% if can? :destroy, cohort%>
         <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if can? :new , @cohort%>
 <%= link_to 'New Cohort', new_cohort_path %>
+<% end %>

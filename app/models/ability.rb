@@ -44,26 +44,34 @@ class Ability
   
     # if user.role===1 #ADMIN
     #   can :read, :all
-    
+     
       
 
     if user.present?  # additional permissions for students
-      can :show, :update,:edit_password,:update_password, User, id: user.id 
+      can :update, User, id: user.id 
+      can :edit_password, User, id: user.id 
+      can :update_password, User, id: user.id 
       if user.role===2  # additional permissions for administrators
         can :manage, :all
       elsif user.role===1# additional permissions for teachers
         can :read, :all
-        can :update,:edit_password,:update_password, User, id: user.id
+        can [:edit, :update], [Cohort]
+        can [:create, :read, :update, :delete], [Block]
+      elsif user.role===0
+        can :show, User, id: user.id 
       end
     end
 
-    can :crud, Block do |block|
-      block.user == user
-    end
+    # can :crud, Block do |block|
+    #   block.user == user
+    # end
 
-    can :crud, Cohort do |cohort|
-      block.user == user
-    end
+    # if user.role===1
+    #   can :cru, :all
+    # end
+    # can :crud, Cohort do |cohort|
+    #   cohort.user == user
+    # end
 
     # can :ru, User do |u|
     #   u.role ==0 && u.id==user.id#|| answer.question.user == user

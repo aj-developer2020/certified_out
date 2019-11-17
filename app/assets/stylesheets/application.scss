@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Alata|Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Public+Sans&display=swap');
 
 body {
   background-color: rgb(211, 211, 211);
@@ -10,24 +12,24 @@ body {
   min-height: 100vh;
 }
 
+
 .body-container {
   padding: 2em;
-  position: relative;
-  min-height: 100vh;
+
 }
 
 .btn.btn-light {
+
   text-decoration: none;
   border-radius: 0px;
-  height: 5em;
+  height: inherit;
   color: #64182F;
   background-color: white;
 }
 
-// .btn.btn-light:hover {
-//   color: white;
-//   background-color: #64182F;
-// }
+a.btn.btn-light {
+  padding-top: 3em;
+}
 
 .nav-link:hover {
   color: #64182F;
@@ -51,26 +53,27 @@ a:hover {
   flex-direction: row;
   justify-content: right;
 }
+
+
 .login-nav {
   display: flex;
   justify-content: right;
 }
 
-
 .nav.navbar-nav {
   display: flex;
   flex-direction: row;
-  width: 75%;
+  width: auto;
   height: 124px;
   justify-content: flex-end;
   background-color: white;
-  align-items: center;
+  align-content: center;
 }
 
 .sign-in-container {
-display: flex;
-justify-content: center;
-padding-top: 15%;
+  display: flex;
+  justify-content: center;
+  padding-top: 15%;
 }
 
 .form-container {
@@ -84,6 +87,7 @@ padding-top: 15%;
   padding-top: 2em;
   flex-direction: row;
 }
+
 .form-logo {
   display: flex;
   height: 144px;
@@ -92,7 +96,7 @@ padding-top: 15%;
 }
 
 .background-img-container {
-  background: url('log-in-background'); 
+  background: url('log-in-background');
   background-size: cover;
   min-height: 100vh;
 
@@ -126,4 +130,57 @@ padding-top: 15%;
 
 .footer-link:hover {
   color: white;
+}
+
+.user-show {
+  padding: 5px 30px;
+}
+
+#profile-photo {
+  width: 250px;
+  height: auto;
+}
+
+#user-info {
+  text-align: left;
+}
+
+  .home-bg {
+  background: url('home-bg');
+  background-size: cover;
+  min-height: 100vh;
+  filter: grayscale(60%);
+  display: flex;
+  flex-direction: column;
+
+}
+
+.home-h1 {
+  color: white;
+  padding-left: 1.6em;
+  padding-bottom: 1em;
+  padding-top: 3em;
+  font-family: 'Alata', sans-serif;
+  font-size: 3em;
+}
+
+.home-p {
+  color: whitesmoke;
+  padding: 3em;
+  font-size: 1.5em;
+  font-family: 'Lato', sans-serif;
+
+}
+
+.home-text {
+  background-color: rgba(0, 0, 0, 0.308);
+  min-height: inherit;
+}
+
+.active {
+  color: green;
+}
+
+.inactive {
+  color: red;
 }

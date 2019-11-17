@@ -11,6 +11,7 @@ super_user = User.create(
   last_name: "Duck",
   email: "a@a.a",
   password: "a",
+  phone: "44444444444444444",
   role: 2
 )
 teacher = User.create(
@@ -18,12 +19,25 @@ teacher = User.create(
   last_name: "Daddy",
   email: "b@b.b",
   password: "b",
+  phone: "44444444444444444",
   role: 1
 )
-teacher = User.create(
+student = User.create(
   first_name: "Mickey",
   last_name: "Mouse",
   email: "c@c.c",
   password: "c",
+  phone: "44444444444444444",
   role: 0
 )
+
+Cohort.create(
+  title: "Cohort 34",
+  program: "Bootcamp",
+  status: 2,
+)
+
+
+
+p(User.all.count);
+p(Cohort.all.count);

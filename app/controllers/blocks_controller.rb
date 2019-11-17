@@ -8,6 +8,27 @@ class BlocksController < ApplicationController
   # end
 
   def show
+    @cohort = Cohort.find(params[:cohort_id])
+    @registrations = Registration.where(cohort_id: @cohort.id)
+    @users = []
+    for i in @registrations
+      @users.push(User.find_by(id: i.user_id))
+    end
+    @attendances = Attendance.where(block_id: @block.id)
+
+
+    # @users = User.where(user_id: @registrations.user_id)
+    @attendance = Attendance.new
+    # @attendances = Attendance.where(cohort_id: @cohort.id)
+    puts "------------------------"
+    p @cohort
+    puts "------------------------"
+    p @registrations
+    puts "------------------------"
+    p @users
+    puts "------------------------"
+  
+    
   end
 
   # def new
@@ -15,6 +36,7 @@ class BlocksController < ApplicationController
   # end
 
   def edit
+    @cohort = Cohort.find(params[:cohort_id])
   end
 
   def create

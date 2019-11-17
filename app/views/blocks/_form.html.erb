@@ -1,15 +1,21 @@
-<%= form_with(model: block, local: true) do |form| %>
-  <% if block.errors.any? %>
+<%= form_with(url: cohort_block_path(@cohort, @block), method: :patch, local: true) do |form| %>
+  <% if @block.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(block.errors.count, "error") %> prohibited this block from being saved:</h2>
+      <h2><%= pluralize(@block.errors.count, "error") %> prohibited this block from being saved:</h2>
 
       <ul>
-        <% block.errors.full_messages.each do |message| %>
+        <% @block.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
 
   <div class="field">
     <%= form.label :date %>
@@ -26,10 +32,6 @@
     <%= form.text_field :type_of_block %>
   </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>
