@@ -8,7 +8,7 @@ class Cohort < ApplicationRecord
   validates(:title, presence: true, uniqueness: true)
   validates(:program, presence: true)
   validates(:status, presence: true)
-
+ 
 # status to setup 
   def set_default_status
     self.status ||=2#Setup Phase
