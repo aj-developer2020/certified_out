@@ -46,14 +46,14 @@ class Ability
     #   can :read, :all
     
       
-    # can :read, :all # permissions for every user, even if not logged in    
 
-    if user.present?  # additional permissions for logged in users (they can manage their posts)
-      can :show, :update, User, user_id: user.id 
+    if user.present?  # additional permissions for students
+      can :show, :update,:edit_password,:update_password, User, id: user.id 
       if user.role===2  # additional permissions for administrators
         can :manage, :all
-      elsif user.role===1
+      elsif user.role===1# additional permissions for teachers
         can :read, :all
+        can :update,:edit_password,:update_password, User, id: user.id
       end
     end
 
