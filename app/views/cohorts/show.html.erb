@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @cohort.title %>
+  <h1>  <%= @cohort.title %></h1>
+
 </p>
 
 <p>
@@ -31,11 +31,6 @@
 </p>
 
 <p>
-  <strong>Is archived:</strong>
-  <%= @cohort.is_archived %>
-</p>
-
-<p>
   <strong>Start date:</strong>
   <%= @cohort.start_date %>
 </p>
@@ -53,15 +48,28 @@
   </ul>
 <% end %>
 
-<div class="form-group">
-  <%= f.text_area(
-  :title,
-  cols: 50,
-  rows: 5,
-  placeholder: "Create a new Block",
-  class: "form-control"
-  ) %>
-</div>
+
+  <h2> Add a new Block</h2>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :duration %>
+    <%= f.number_field :duration %>
+  </div>
+
+  <div class="field">
+    <%= f.label :type_of_block %>
+    <%= f.text_field :type_of_block %>
+  </div>
+
+
 <%= @block.user %>
 <%= f.submit "New Block" %>
 <% end %>
@@ -72,7 +80,8 @@
   <% @blocks.each do |block| %>
     <li>
       <p>
-        <%= block.title %> <br />
+        <%= link_to block.title, cohort_block_path(@cohort, block) %> <br />
+        
         <% if can? :crud, block %>
           <small>
             <%= link_to(
