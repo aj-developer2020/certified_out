@@ -1,2 +1,18 @@
+<% if !current_user.present? %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
 
+    <%= link_to image_tag('certified.out_logo.png'), root_path %>
+    </div>
+    <ul class="nav navbar-nav">
+
+    <%= link_to "Login", new_session_path, class: "btn btn-light" %>
+
+    </ul>
+
+
+    </div>
+  </nav>
+  <% end %>
 <h2>Hello World</h2>

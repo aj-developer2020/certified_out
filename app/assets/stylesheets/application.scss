@@ -3,30 +3,66 @@
 body {
   background-color: silver;
 }
+.body-container {
+  padding: 2em;
+}
+
+.btn.btn-light {
+
+  text-decoration: none;
+  border-radius: 0px;
+  height: inherit;
+  color: #64182F;
+  background-color: white;
+}
+
+a.btn.btn-light {
+  padding-top: 3em;
+}
+
+.nav-link:hover {
+  color: #64182F;
+  text-decoration: none;
+}
 
 a {
   color: #64182F;
   text-decoration: none;
 }
+
+a:hover {
+  color: #64182F;
+  text-decoration: none;
+}
+
 .navbar.navbar-default {
   display: flex;
 
   color: #64182F;
   flex-direction: row;
+  justify-content: right;
+}
+
+
+.login-nav {
+  display: flex;
+  justify-content: right;
 }
 
 .nav.navbar-nav {
   display: flex;
   flex-direction: row;
-  width: 30em;
-  justify-content: space-between;
+  width: auto;
+  height: 124px;
+  justify-content: flex-end;
   background-color: white;
+  align-content: center;
 }
 
 .sign-in-container {
-display: flex;
-justify-content: center;
-padding-top: 15%;
+  display: flex;
+  justify-content: center;
+  padding-top: 15%;
 }
 
 .form-container {
@@ -40,6 +76,7 @@ padding-top: 15%;
   padding-top: 2em;
   flex-direction: row;
 }
+
 .form-logo {
   display: flex;
   height: 144px;
@@ -48,7 +85,7 @@ padding-top: 15%;
 }
 
 .background-img-container {
-  background: url('log-in-background'); 
+  background: url('log-in-background');
   background-size: cover;
   min-height: 100vh;
 
@@ -71,3 +108,15 @@ padding-top: 15%;
 }
 
 
+.footer-copyright.text-center.py-3 {
+  background-color: #64182F;
+  color: white;
+}
+
+.footer-link {
+  color: white;
+}
+
+.footer-link:hover {
+  color: white;
+}

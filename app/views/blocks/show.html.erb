@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Title:</strong>
+  <%= @block.title %>
+</p>
+<p>
   <strong>Date:</strong>
   <%= @block.date %>
 </p>
@@ -15,10 +19,7 @@
   <%= @block.type_of_block %>
 </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @block.title %>
-</p>
 
-<%= link_to 'Edit', edit_block_path(@block) %> |
-<%= link_to 'Back', blocks_path %>
+
+<%= link_to 'Edit', edit_cohort_block_path(@cohort, @block) %> |
+<%= link_to 'Back', cohort_path(@cohort) %>

@@ -14,38 +14,43 @@
   </head>
 
   <body>
+
   <% if current_user.present? %>
   <nav class="navbar navbar-default">
-
-
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
 
+    <%= link_to image_tag('certified.out_logo.png'), root_path %>
+    </div>
     <ul class="nav navbar-nav">
 
-
-    <%#= flash[:notice] || flash[:alert] %>
-      <% if user_signed_in?%>
-        Hello <%= current_user.first_name %>     &emsp;
-        <%= link_to "Sign Out", session_path, method: :delete,
-        data: {confirm: "Are you sure you want to log out?"}%>
-      <%else%>
-        <%= link_to "Login", new_session_path %> &emsp;
-        <%= link_to "Sign Up", new_user_path %>
-      <% end %>
-
       
-      <li class="active"><a href="/">Home</a></li>
-      <li><a href="/users">Students</a></li>
-      <li><a href="/cohorts">Cohorts</a></li>
-      <li><a href="#">Blocks</a></li>
+      <a class="btn btn-light" href="/" role="button">Home</a>
+      <a class="btn btn-light" href="/users" role="button">Students</a>
+      <a class="btn btn-light" href="/cohorts" role="button">Cohorts</a>
+      <a class="btn btn-light" href="/users/:id" role="button">Profile</a>
 
+      <% if user_signed_in?%>
+<%= link_to "Sign Out", session_path, method: :delete, class: "btn btn-light",
+        data: {confirm: "Are you sure you want to log out?"}%>
+    
     </ul>
-  </div>
+    <% end %>
+  <%#= flash[:notice] || flash[:alert] %>
+
+    </div>
+  <% end %>
+
   </nav>
-<% end %>
+  <div class="body-container">
     <%= yield %>
+
+  </div>
+
+
+
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="footer-link"> Cohort 34</a>
+  </div>
   </body>
 </html>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :attendances, shallow: true, only: [ :create, :destroy ]
       get :attended, on: :collection
     end
-    resources :registrations, shallow: true, only: [ :create, :destroy ]
+    resources :registrations, shallow: true, only: [ :create, :destroy, :new ]
     get :registered, on: :collection
   end
   
