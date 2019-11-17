@@ -5,6 +5,7 @@ body {
 }
 
 .btn.btn-light {
+
   text-decoration: none;
   border-radius: 0px;
   height: 5em;
@@ -12,10 +13,9 @@ body {
   background-color: white;
 }
 
-// .btn.btn-light:hover {
-//   color: white;
-//   background-color: #64182F;
-// }
+a.btn.btn-light {
+  padding-top: 28px;
+}
 
 .nav-link:hover {
   color: #64182F;
@@ -39,6 +39,8 @@ a:hover {
   flex-direction: row;
   justify-content: right;
 }
+
+
 .login-nav {
   display: flex;
   justify-content: right;
@@ -48,17 +50,17 @@ a:hover {
 .nav.navbar-nav {
   display: flex;
   flex-direction: row;
-  width: 75%;
+  width: auto;
   height: 124px;
   justify-content: flex-end;
   background-color: white;
-  align-items: center;
+  align-content: center;
 }
 
 .sign-in-container {
-display: flex;
-justify-content: center;
-padding-top: 15%;
+  display: flex;
+  justify-content: center;
+  padding-top: 15%;
 }
 
 .form-container {
@@ -72,6 +74,7 @@ padding-top: 15%;
   padding-top: 2em;
   flex-direction: row;
 }
+
 .form-logo {
   display: flex;
   height: 144px;
@@ -80,7 +83,7 @@ padding-top: 15%;
 }
 
 .background-img-container {
-  background: url('log-in-background'); 
+  background: url('log-in-background');
   background-size: cover;
   min-height: 100vh;
 

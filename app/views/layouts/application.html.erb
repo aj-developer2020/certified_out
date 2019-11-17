@@ -25,15 +25,14 @@
     <ul class="nav navbar-nav">
 
       
-      <button type="button" class="btn btn-light"><a href="/" class="nav-link">Home</a></button>
-      <button type="button" class="btn btn-light"><a href="/users" class="nav-link">Students</a></button>
-      <button type="button" class="btn btn-light"><a href="/cohorts" class="nav-link">Cohorts</a></button>
-      <button type="button" class="btn btn-light"><a href="#" class="nav-link">Blocks</a></button>
+      <a class="btn btn-light" href="/" role="button">Home</a>
+      <a class="btn btn-light" href="/users" role="button">Students</a>
+      <a class="btn btn-light" href="/cohorts" role="button">Cohorts</a>
+      <a class="btn btn-light" href="/users/:id" role="button">Profile</a>
 
       <% if user_signed_in?%>
-
-      <button type="button" class="btn btn-light"><%= link_to "Sign Out", session_path, method: :delete,
-        data: {confirm: "Are you sure you want to log out?"}%></button>
+<%= link_to "Sign Out", session_path, method: :delete, class: "btn btn-light",
+        data: {confirm: "Are you sure you want to log out?"}%>
     
     </ul>
     <% end %>
