@@ -17,6 +17,7 @@ class CohortsController < ApplicationController
      # For the list of answers
      @blocks = @cohort.blocks.order(created_at: :desc)
      @registration = @cohort.registrations.find_by(user: current_user)
+     
 
   end
 

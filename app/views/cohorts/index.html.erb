@@ -20,13 +20,12 @@
   <tbody>
     <% @cohorts.each do |cohort| %>
       <tr>
-        <td><%= cohort.title %></td>
+        <td><%= link_to cohort.title, cohort %></td>
         <td><%= cohort.slack %></td>
         <td><%= cohort.description %></td>
         <td><%= cohort.picture_url %></td>
         <td><%= cohort.status %></td>
         <td><%= cohort.program %></td>
-        <td><%= cohort.is_archived %></td>
         <td><%= cohort.start_date %></td>
         <td><%= link_to 'Show', cohort %></td>
         <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
