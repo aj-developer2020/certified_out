@@ -8,6 +8,7 @@ class BlocksController < ApplicationController
   # end
 
   def show
+    @cohort = Cohort.find(params[:cohort_id])
   end
 
   # def new
@@ -15,6 +16,7 @@ class BlocksController < ApplicationController
   # end
 
   def edit
+    @cohort = Cohort.find(params[:cohort_id])
   end
 
   def create
