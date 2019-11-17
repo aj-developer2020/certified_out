@@ -52,9 +52,8 @@ class Ability
       if user.role===2  # additional permissions for administrators
         can :manage, :all
       elsif user.role===1# additional permissions for teachers
-        can [:edit, :update], [Cohort]
+        can [:update], [Cohort]
         can [:create, :read, :update, :delete], [Block]
-        can :update,:edit_password,:update_password, User, id: user.id
       end
     end
 
