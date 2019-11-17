@@ -30,6 +30,20 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    alias_action :create, :read, :update, :delete, to: :crud
+    alias_action :create, :read, :update, to: :cru
+    alias_action  :read, :update, to: :ru
+    # alias_action :show, :to => :show
+    # if user.role===2 #ADMIN
+    #   can :manage, :all
+    # end
+    # if user.role===1 #ADMIN
+    #   can :read, :all
+    # end
+
+  
+    # if user.role===1 #ADMIN
+    #   can :read, :all
     
       
 
@@ -43,5 +57,16 @@ class Ability
       end
     end
 
+    can :crud, Block do |block|
+      block.user == user
+    end
+
+    can :crud, Cohort do |cohort|
+      block.user == user
+    end
+
+    # can :ru, User do |u|
+    #   u.role ==0 && u.id==user.id#|| answer.question.user == user
+    # end
   end
 end

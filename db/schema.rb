@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_16_032153) do
+ActiveRecord::Schema.define(version: 2019_11_16_235100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,9 @@ ActiveRecord::Schema.define(version: 2019_11_16_032153) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "cohort_id"
+    t.bigint "user_id"
     t.index ["cohort_id"], name: "index_blocks_on_cohort_id"
+    t.index ["user_id"], name: "index_blocks_on_user_id"
   end
 
   create_table "cohorts", force: :cascade do |t|
@@ -46,6 +48,8 @@ ActiveRecord::Schema.define(version: 2019_11_16_032153) do
     t.date "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_cohorts_on_user_id"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -73,6 +77,8 @@ ActiveRecord::Schema.define(version: 2019_11_16_032153) do
   add_foreign_key "attendances", "blocks"
   add_foreign_key "attendances", "users"
   add_foreign_key "blocks", "cohorts"
+  add_foreign_key "blocks", "users"
+  add_foreign_key "cohorts", "users"
   add_foreign_key "registrations", "cohorts"
   add_foreign_key "registrations", "users"
 end
