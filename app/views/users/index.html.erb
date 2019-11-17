@@ -1,33 +1,39 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
-<table>
+<table class="table">
 <thead>
 <tr>
-<th>Role</th>
-<th>Email</th>
-<th>First name</th>
-<th>Last name</th>
-<th>Password digest</th>
-<th>Picture url</th>
-<th>Phone</th>
-<th>Is active</th>
-<th colspan="3"></th>
+<th scope="col">Role</th>
+<th scope="col" style="width: 22%">Email</th>
+
+<th scope="col">Name</th>
+
+<th scope="col" >Phone</th>
+<th scope="col">Is active</th>
+<th scope="col" style="width: 17%">Actions</th>
 </tr>
 </thead>
 
-<tbody>
+<table class="table">
 <% @users.each do |user| %>
   <% if can? :index, user%>
       <tr>
-        <td><%= user.role %></td>
+        <td><% if user.role == 0 %>
+        Student
+      <% elsif user.role == 1 %>
+        Instructor
+      <% else %>
+        Admin
+      <% end %></td>
         <td><%= user.email %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.password_digest %></td>
-        <td><%= user.picture_url %></td>
+        <td><%= user.first_name %> <%= user.last_name %></td>
         <td><%= user.phone %></td>
-        <td><%= user.is_active %></td>
+        <td> <% if user.is_active %>
+            <p class="active"> Active </p>
+        <% else %>
+            <p class="inactive"> Inactive </p>
+        <% end %></td>
         <% if can? :show, user%>
           <td><%= link_to 'Show', user %></td>
         <% end %>
