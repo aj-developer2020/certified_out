@@ -1,0 +1,25 @@
+<%= form_with(url: cohort_registrations_path(@cohort), method: :post, local: true) do |form| %>
+  <% @users.each do |student| %>
+
+    <% if student.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :student_name, "#{student.first_name}" %>
+      <%= form.check_box :student_name %>
+    </div>
+
+
+
+  <% end %>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>
