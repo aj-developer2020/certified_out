@@ -55,7 +55,7 @@
         </ul>
       </div>
     <% end %>
-  <%= student.first_name + " " + student.last_name + "," %>
+  <%= link_to "#{student.first_name} #{student.last_name}, " , user_path(student.id) %>
   <% end %>
 </p>
 

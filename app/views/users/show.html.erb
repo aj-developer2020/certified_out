@@ -55,9 +55,12 @@
   </div>
   
 </div>
-<div class="container col-3">
-    <%= link_to 'Edit', edit_user_path(@user), class: "button" %>
-</div>
+
+<% if can? :edit, @user %>
+  <div class="container col-3">
+      <%= link_to 'Edit', edit_user_path(@user), class: "button" %>
+  </div>
+<%end%>
 
 
 

@@ -44,16 +44,21 @@ class Ability
   
     # if user.role===1 #ADMIN
     #   can :read, :all
-    
+     
       
 
     if user.present?  # additional permissions for students
-      can :show, :update,:edit_password,:update_password, User, id: user.id 
+      can :update, User, id: user.id 
+      can :edit_password, User, id: user.id 
+      can :update_password, User, id: user.id 
       if user.role===2  # additional permissions for administrators
         can :manage, :all
       elsif user.role===1# additional permissions for teachers
+        can :read, :all
         can [:update], [Cohort]
         can [:create, :read, :update, :delete], [Block]
+      elsif user.role===0
+        can :show, User
       end
     end
 
