@@ -49,7 +49,6 @@ a:hover {
   justify-content: right;
 }
 
-
 .nav.navbar-nav {
   display: flex;
   flex-direction: row;
@@ -109,3 +108,15 @@ a:hover {
 }
 
 
+.footer-copyright.text-center.py-3 {
+  background-color: #64182F;
+  color: white;
+}
+
+.footer-link {
+  color: white;
+}
+
+.footer-link:hover {
+  color: white;
+}
