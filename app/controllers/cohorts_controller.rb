@@ -1,5 +1,5 @@
 class CohortsController < ApplicationController
-  # before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   before_action :find_cohort, only: [:show, :edit, :update, :destroy]
   before_action :authorize!, only: [:destroy]
 
@@ -16,6 +16,11 @@ class CohortsController < ApplicationController
      # For the list of answers
      @blocks = @cohort.blocks.order(created_at: :desc)
      @registration = @cohort.registrations.find_by(user: current_user)
+     @registrations = Registration.where(cohort_id: @cohort.id)
+     @users = []
+    for i in @registrations
+      @users.push(User.find_by(id: i.user_id))
+    end
 
   end
 
@@ -25,7 +30,7 @@ class CohortsController < ApplicationController
   end
 
   def edit
-    redirect_to cohorts_path, alert: 'Not Authorized' unless can?(:edit, @cohort)
+    redirect_to cohorts_path, alert: 'Not Authorized' unless can?(:update, @cohort)
   end
 
   def create
