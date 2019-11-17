@@ -62,6 +62,7 @@
   class: "form-control"
   ) %>
 </div>
+<%= @block.user %>
 <%= f.submit "New Block" %>
 <% end %>
 
@@ -72,7 +73,7 @@
     <li>
       <p>
         <%= block.title %> <br />
-        <#% if can? :crud, block %>
+        <% if can? :crud, block %>
           <small>
             <%= link_to(
               "Delete",
@@ -83,10 +84,10 @@
               }
             ) %>
           </small>
-        <#% end %>
+        <% end %>
         |
         <small>
-          Block <%= time_ago_in_words(block.created_at) %> ago
+          Block <%= block.created_at %> ago
         </small>
       </p>
     </li>

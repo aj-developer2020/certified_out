@@ -1,23 +1,19 @@
 class BlocksController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_block, only: [:show, :edit, :update, :destroy]
 
-  # GET /blocks
-  # GET /blocks.json
-  def index
-    @blocks = Block.all
-  end
 
-  # GET /blocks/1
-  # GET /blocks/1.json
+  # def index
+  #   @blocks = Block.all
+  # end
+
   def show
   end
 
-  # GET /blocks/new
-  def new
-    @block = Block.new
-  end
+  # def new
+  #   @block = Block.new
+  # end
 
-  # GET /blocks/1/edit
   def edit
   end
 
@@ -25,10 +21,10 @@ class BlocksController < ApplicationController
     @cohort = Cohort.find(params[:cohort_id])
     @block = Block.new(block_params)
     @block.cohort = @cohort
-    # @block.user = current_user
+    @block.user = current_user
 
     if @block.save
-      redirect_to cohort_path, notice: 'Block was successfully created.' 
+      redirect_to cohort_path(@cohort), notice: 'Block was successfully created.' 
     else
       @blocks = @cohort.blocks.order(created_at: :desc)
       render 'cohorts/show'
@@ -36,29 +32,24 @@ class BlocksController < ApplicationController
     
   end
 
-  # PATCH/PUT /blocks/1
-  # PATCH/PUT /blocks/1.json
   def update
-    respond_to do |format|
       if @block.update(block_params)
-        format.html { redirect_to @block, notice: 'Block was successfully updated.' }
-        format.json { render :show, status: :ok, location: @block }
+        redirect_to @block, notice: 'Block was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @block.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
-  # DELETE /blocks/1
-  # DELETE /blocks/1.json
+
   def destroy
-    @block.destroy
-    respond_to do |format|
-      format.html { redirect_to blocks_url, notice: 'Block was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+    @block = Block.find params[:id]
+        if can? :crud, @block
+          @block.destroy
+          redirect_to cohort_path(@block.cohort)
+        else
+          redirect_to root_path, alert: 'Not authorized'
+        end
+      end
 
   private
     # Use callbacks to share common setup or constraints between actions.
