@@ -1,20 +1,26 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Alata|Lato&display=swap');
+
 
 body {
-  background-color: silver;
+  background-color: rgb(211, 211, 211);
+}
+
+.body-container {
+  padding: 2em;
 }
 
 .btn.btn-light {
 
   text-decoration: none;
   border-radius: 0px;
-  height: 5em;
+  height: inherit;
   color: #64182F;
   background-color: white;
 }
 
 a.btn.btn-light {
-  padding-top: 28px;
+  padding-top: 3em;
 }
 
 .nav-link:hover {
@@ -45,7 +51,6 @@ a:hover {
   display: flex;
   justify-content: right;
 }
-
 
 .nav.navbar-nav {
   display: flex;
@@ -117,4 +122,36 @@ a:hover {
 
 .footer-link:hover {
   color: white;
+}
+
+.home-bg {
+  background: url('home-bg');
+  background-size: cover;
+  min-height: 100vh;
+  filter: grayscale(60%);
+  display: flex;
+  flex-direction: column;
+
+}
+
+.home-h1 {
+  color: white;
+  padding-left: 1.6em;
+  padding-bottom: 1em;
+  padding-top: 3em;
+  font-family: 'Alata', sans-serif;
+  font-size: 3em;
+}
+
+.home-p {
+  color: whitesmoke;
+  padding: 3em;
+  font-size: 1.5em;
+  font-family: 'Lato', sans-serif;
+
+}
+
+.home-text {
+  background-color: rgba(0, 0, 0, 0.308);
+  min-height: inherit;
 }
