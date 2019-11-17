@@ -3,7 +3,7 @@ class RegistrationsController < ApplicationController
   # before_action :authenticate_user!
   before_action :find_cohort, only: [ :create, :new ]
   # before_action :authorize_user!, only: [ :create ]
-
+ 
   def new
     @users = User.where(role: 0).all
     @registration = Registration.new
@@ -11,9 +11,8 @@ class RegistrationsController < ApplicationController
     puts "------------------------"
     p @registrations
     puts "------------------------"
-
   end
-
+ 
   def create
     registrations = params.require(:registration)
     registrations.each do |user_id, add_user|
