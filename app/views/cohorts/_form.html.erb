@@ -11,40 +11,40 @@
     </div>
   <% end %>
 
-  <div class="field">
+    <div class="form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="field">
+    <div class="form-group">
     <%= form.label :slack %>
-    <%= form.text_area :slack %>
+    <%= form.text_area :slack, class: "form-control" %>
   </div>
 
-  <div class="field">
+    <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
-  <div class="field">
+    <div class="form-group">
     <%= form.label :picture_url %>
-    <%= form.text_area :picture_url %>
+    <%= form.text_area :picture_url, class: "form-control" %>
   </div>
 
-  <div class="field">
+    <div class="form-group">
     <%= form.label :status %>
-    <%= form.number_field :status %>
+    <%= form.number_field :status, class: "form-control" %>
   </div>
 
-  <div class="field">
+    <div class="form-group">
     <%= form.label :program %>
-    <%= form.text_field :program %>
+    <%= form.text_field :program, class: "form-control" %>
   </div>
 
 
-  <div class="field">
+    <div class="form-group">
     <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
+    <%= form.date_select :start_date, class: "form-control" %>
   </div>
 
   <div class="actions">
