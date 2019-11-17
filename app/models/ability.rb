@@ -30,6 +30,7 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    alias_action :create, :read, :update, :delete, to: :crud
     alias_action :create, :read, :update, to: :cru
     alias_action  :read, :update, to: :ru
     # alias_action :show, :to => :show
@@ -45,20 +46,25 @@ class Ability
     #   can :read, :all
     
       
-    # can :read, :all # permissions for every user, even if not logged in    
 
-    if user.present?  # additional permissions for logged in users (they can manage their posts)
-      can :show, :update, User, user_id: user.id 
+    if user.present?  # additional permissions for students
+      can :show, :update,:edit_password,:update_password, User, id: user.id 
       if user.role===2  # additional permissions for administrators
         can :manage, :all
-      elsif user.role===1
+      elsif user.role===1# additional permissions for teachers
         can :read, :all
+        can :update,:edit_password,:update_password, User, id: user.id
       end
     end
 
-    # can :cru, User do |u|
-    #   u.role ==0 || u.role == 1 || u.role==2 #|| answer.question.user == user
-    # end
+    can :crud, Block do |block|
+      block.user == user
+    end
+
+    can :crud, Cohort do |cohort|
+      block.user == user
+    end
+
     # can :ru, User do |u|
     #   u.role ==0 && u.id==user.id#|| answer.question.user == user
     # end
