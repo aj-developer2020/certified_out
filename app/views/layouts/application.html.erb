@@ -14,6 +14,38 @@
   </head>
 
   <body>
+  <% if current_user.present? %>
+  <nav class="navbar navbar-default">
+
+
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+
+
+    <%#= flash[:notice] || flash[:alert] %>
+      <% if user_signed_in?%>
+        Hello <%= current_user.first_name %>     &emsp;
+        <%= link_to "Sign Out", session_path, method: :delete,
+        data: {confirm: "Are you sure you want to log out?"}%>
+      <%else%>
+        <%= link_to "Login", new_session_path %> &emsp;
+        <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+
+      
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/users">Students</a></li>
+      <li><a href="/cohorts">Cohorts</a></li>
+      <li><a href="#">Blocks</a></li>
+
+    </ul>
+  </div>
+  </nav>
+<% end %>
     <%= yield %>
   </body>
 </html>
