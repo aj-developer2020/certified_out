@@ -5,13 +5,12 @@
   <div class="d-flex flex-row justify-content-end align-content-center">
     <div class="form-group px-2">
       <%= form.label :status, class: "pr-2"%>
-      <%= form.select :status, [['Select Filter'],['Ongoing', 0], ['Completed', 1], ['Setup', 2],['Archived', 3]], :class => "form-control" %>
+      <%= form.select :status, [['Select Filter',''],['Ongoing', 0], ['Completed', 1], ['Setup', 2],['Archived', 3]], :class => "form-control" %>
     </div>
     <div class="form-group px-2">
       <%= form.label :program, class: "pr-2" %>
-      <%= form.select :program, [['Select Filter'],['Bootcamp'], ['Fundamentals'], ['One Year Program'], ['Business']], :class => "form-control" %>
+      <%= form.select :program, [['Select Filter',''],['Bootcamp'], ['Fundamentals'], ['One Year Program'], ['Business']], :class => "form-control" %>
     </div>
-  
     <div class="actions">
       <%= form.submit 'Filter', class: "btn btn-dark" %>
     </div>
@@ -34,7 +33,6 @@
   <tbody>
     <% @cohorts.each do |cohort| %>
       <%if(current_user.role>=1 || Registration.exists?(cohort_id: cohort.id, user_id: current_user.id))%>
-        
         <%if(!@status || (@status=='' && cohort.program == @program) || (@program=='' && cohort.status == @status)|| (@program=='' && @status =='')||(cohort.status == @status && cohort.program == @program))%>
           <tr>
             <td><%= link_to cohort.title, cohort %></td>
