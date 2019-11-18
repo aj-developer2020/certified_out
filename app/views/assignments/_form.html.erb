@@ -1,0 +1,34 @@
+<div class="container">
+  <%= form_with(model: [:cohort, @assignment], method: :post, local: true) do |form| %>
+    <% if assignment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+
+        <ul>
+          <% assignment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :attachment %>
+      <%= form.text_area :attachment, class: "form-control" %>
+    </div>
+
+    <div class="actions text-center">
+      <%= form.submit class: 'btn-maroon' %>
+    </div>
+  <% end %>
+</div>
