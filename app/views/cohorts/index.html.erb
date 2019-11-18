@@ -56,13 +56,13 @@
             <td><%= cohort.start_date %></td>
             <td>
             <% if can? :show, cohort%>
-              <%= link_to 'Show', cohort %>
+              <td><%= link_to 'Show', cohort, class: "btn btn-secondary btn-sm" %> 
             <% end %>
             <% if can? :edit, cohort%>
-              <%= link_to 'Edit', edit_cohort_path(cohort) %>
+              <%= link_to 'Edit', edit_cohort_path(cohort), class: "btn btn-secondary btn-sm" %>
             <% end %>
             <% if can? :destroy, cohort%>
-              <%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %> 
             <% end %>
             </td>
           </tr>
@@ -74,5 +74,5 @@
 
 <br>
 <% if can? :new , @cohort%>
-<%= link_to 'New Cohort', new_cohort_path, class: "btn" %>
+<%= link_to 'New Cohort', new_cohort_path, class: "btn btn-maroon" %>
 <% end %>

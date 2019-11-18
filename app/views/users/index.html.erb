@@ -35,13 +35,13 @@
             <p class="inactive"> Inactive </p>
         <% end %></td>
         <% if can? :show, user%>
-        <td><%= link_to 'Show', user %>
+        <td><%= link_to 'Show', user, class: "btn btn-secondary btn-sm" %>
         <% end %>
         <% if can? :edit, user%>
-        <%= link_to 'Edit', edit_user_path(user) %>
+        <%= link_to 'Edit', edit_user_path(user), class: "btn btn-secondary btn-sm" %>
         <% end %>
         <% if can? :edit, user%>
-        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %></td>
         <% end %>
       </tr>
     <% end %>
@@ -51,7 +51,7 @@
 </table>
 <br>
 
-<%= link_to 'New User', new_user_path, class: 'btn' %>
+<%= link_to 'New User', new_user_path, class: 'btn btn-maroon' %>
 <br>
 <br>
 <br>
