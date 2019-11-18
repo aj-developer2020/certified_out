@@ -21,6 +21,7 @@
 
   <tbody>
     <% @cohorts.each do |cohort| %>
+
       <%if (current_user.role>=1 || Registration.exists?(cohort_id: cohort.id, user_id: current_user.id))%>
           <tr>
             <td><%= link_to cohort.title, cohort %></td>
@@ -39,6 +40,15 @@
             <td><%= cohort.program %></td>
             <td><%= cohort.start_date %></td>
             <% if can? :show, cohort%>
+
+            <td><%= link_to 'Show', cohort, class: "btn btn-secondary btn-sm" %> 
+            <% end %>
+            <% if can? :edit, cohort%>
+            <%= link_to 'Edit', edit_cohort_path(cohort), class: "btn btn-secondary btn-sm" %>
+            <% end %>
+            <% if can? :destroy, cohort%>
+            <%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %> </td>
+
             <td><%= link_to 'Show', cohort %></td>
             <% end %>
             <% if can? :edit, cohort%>
@@ -46,10 +56,12 @@
             <% end %>
             <% if can? :destroy, cohort%>
             <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
             <% end %>
           </tr>
       <% end %>
     <%end%>
+
   </tbody>
 </table>
 
