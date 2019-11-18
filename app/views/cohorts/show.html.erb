@@ -64,6 +64,7 @@
 <% if can? :edit, @cohort%>
   <%= link_to '[Add/Remove Members] - Turn this into a button', new_cohort_registration_path(@cohort) %>
 <% end %>
+  <%= link_to '[View Attendance] - Turn this into a button', cohort_attendance_path(@cohort) %>
 <% if can? :destroy, @cohort%>
   <%= link_to '[Destroy] - Turn this into a button', @cohort, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

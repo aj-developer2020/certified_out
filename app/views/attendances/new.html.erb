@@ -1,0 +1,36 @@
+
+  <% @users.each do |student| %>
+    <% if student.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <table class="table">
+
+  <thead>
+  <tr>
+  <th scope="col">Role</th>
+  <th scope="col">Email</th>
+  <th scope="col">Name</th>
+  <th scope="col">Phone</th>
+  <th scope="col" class="user-status">Status</th>
+  <th scope="col">Actions</th>
+  </tr>
+  </thead>
+
+    <div class="field">
+      <%= student.first_name %>
+      <%#= student.first_nameasdfasdfds %>
+
+    </div>
+  <% end %>
+
+  <div class="actions">
+  </div>
+
+</table>

@@ -5,14 +5,16 @@ class AttendancesController < ApplicationController
 
   def new
     @cohort = Cohort.find(params[:cohort_id])
-    @block = Block.find(params[:block_id])
+    # @block = Block.find(params[:block_id])
     @registrations = Registration.where(cohort_id: @cohort.id)
-    @users = User.where(user_id: @registrations.user_id)
-    @attendance = Attendance.new
-    # @attendances = Attendance.where(cohort_id: @cohort.id)
-    # puts "------------------------"
-    # p @registrations
-    # puts "------------------------"
+    @attendances = Attendance.all
+    @users = []
+    for i in @registrations
+      @users.push(User.find_by(id: i.user_id))
+    end
+
+ 
+    # @users = User.where(user_id: @registrations.user_id)
   end
 
   def create
