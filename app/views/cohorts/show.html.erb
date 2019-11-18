@@ -72,13 +72,13 @@
 </p>
 
 <% if can? :edit, @cohort%>
-  <%= link_to 'Edit Cohort', edit_cohort_path(@cohort), class: "btn-maroon" %>
+  <%= link_to 'Edit Cohort', edit_cohort_path(@cohort), class: "btn btn-secondary btn-sm" %>
 <% end %>
 <% if can? :edit, @cohort%>
-  <%= link_to 'Edit Members', new_cohort_registration_path(@cohort), class: "btn-maroon" %>
+  <%= link_to 'Edit Members', new_cohort_registration_path(@cohort), class: "btn btn-secondary btn-sm" %>
 <% end %>
 <% if can? :destroy, @cohort%>
-  <%= link_to 'Delete', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-maroon" %>
+  <%= link_to 'Delete', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
 <% end %>
 
 <% if can? :create, @block%>
@@ -118,9 +118,9 @@
 
 
   <%= @block.user %>
-  <%= f.submit "New Block" %>
+  <%= f.submit "New Block", class: "btn-maroon" %>
   <% end %>
-
+<br>
   <hr />
 
   <ul class="block-list">

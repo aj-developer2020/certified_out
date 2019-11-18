@@ -46,10 +46,7 @@ a:hover {
   text-decoration: none;
 }
 
-// .nav-bg {
-//   background-color: white;
-//   width: 73.4vw;
-// }
+
 
 .navbar.navbar-default {
   display: flex;
@@ -199,3 +196,6 @@ a:hover {
   color: black;
 }
 
+.btn.btn-secondary.btn-sm {
+  background-color: #64182F;
+}

@@ -21,6 +21,7 @@
 
   <tbody>
     <% @cohorts.each do |cohort| %>
+<<<<<<< Updated upstream
       <tr>
         <td><%= link_to cohort.title, cohort %></td>
         <td><%= cohort.slack %></td>
@@ -48,6 +49,37 @@
         <% end %>
       </tr>
     <% end %>
+=======
+      <%if (current_user.role>=1 || Registration.exists?(cohort_id: cohort.id, user_id: current_user.id))%>
+          <tr>
+            <td><%= link_to cohort.title, cohort %></td>
+            <td><%= cohort.slack %></td>
+            <td><%= cohort.description %></td>
+
+            <td><% if cohort.status == 0 %>
+            Ongoing
+          <% elsif cohort.status == 1 %>
+            Completed
+          <% elsif cohort.status == 2%>
+            Setup
+            <% else %>
+            Archived
+          <% end %></td>
+            <td><%= cohort.program %></td>
+            <td><%= cohort.start_date %></td>
+            <% if can? :show, cohort%>
+            <td><%= link_to 'Show', cohort, class: "btn btn-secondary btn-sm" %> 
+            <% end %>
+            <% if can? :edit, cohort%>
+            <%= link_to 'Edit', edit_cohort_path(cohort), class: "btn btn-secondary btn-sm" %>
+            <% end %>
+            <% if can? :destroy, cohort%>
+            <%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %> </td>
+            <% end %>
+          </tr>
+      <% end %>
+    <%end%>
+>>>>>>> Stashed changes
   </tbody>
 </table>
 
