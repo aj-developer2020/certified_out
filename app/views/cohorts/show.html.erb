@@ -70,7 +70,7 @@
 <% if can? :edit, @cohort%>
   <%= link_to 'Edit Members', new_cohort_registration_path(@cohort), class: "btn btn-secondary btn-sm" %>
 <% end %>
-  <%= link_to 'View Attendance', cohort_attendance_path(@cohort), class: "btn btn-secondary btn-sm" %>
+<%= link_to 'View Attendance', cohort_attendance_path(@cohort), class: "btn btn-secondary btn-sm" %>
 <% if can? :destroy, @cohort%>
   <%= link_to 'Delete', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
 <% end %>
