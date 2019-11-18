@@ -1,10 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <h1>  <%= @cohort.title %></h1>
+<div class="container d-flex flex-sm-column flex-md-row justify-content-center">
+  <div class="cohort-show">
+  <h1 class="cohort-title">  <%= @cohort.title %></h1>
+  <br>
 
-</p>
+    <% if @cohort.picture_url %>
+      <img src="<%= @cohort.picture_url%>" id="profile-photo">
+    <% else %>
+      <%= image_tag("profile-image-placeholder.png", id: "profile-photo")%>
+    <% end %> 
+  </div>
 
+  <div class="user-show" id="user-info">
+  <br><br><br>
 <p>
   <strong>Slack:</strong>
   <%= @cohort.slack %>
@@ -16,13 +25,16 @@
 </p>
 
 <p>
-  <strong>Picture url:</strong>
-  <%= @cohort.picture_url %>
-</p>
-
-<p>
   <strong>Status:</strong>
-  <%= @cohort.status %>
+  <% if @cohort.status == 0 %>
+        Ongoing
+      <% elsif @cohort.status == 1 %>
+        Completed
+      <% elsif @cohort.status == 2%>
+        Setup
+        <% else %>
+        Archived
+      <% end %>
 </p>
 
 <p>
@@ -34,71 +46,105 @@
   <strong>Start date:</strong>
   <%= @cohort.start_date %>
 </p>
+<p>
+  <strong>Members:</strong>
+  
+  <% @users.each do |student| %>
 
-<%= link_to 'Edit', edit_cohort_path(@cohort) %> |
-<%= link_to 'Back', cohorts_path %>
-
-
- <%= form_with(model: [@cohort, @block], local: true) do |f| %>
-<% if @block.errors.any? %>
-  <ul>
-    <% @block.errors.full_messages.each do |msg|%>
-      <li><%= msg %></li>
+    <% if student.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  </ul>
-<% end %>
-
-
-  <h2> Add a new Block</h2>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :date %>
-    <%= f.date_select :date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :duration %>
-    <%= f.number_field :duration %>
-  </div>
-
-  <div class="field">
-    <%= f.label :type_of_block %>
-    <%= f.text_field :type_of_block %>
-  </div>
-
-
-<%= @block.user %>
-<%= f.submit "New Block" %>
-<% end %>
-
-<hr />
-
-<ul class="block-list">
-  <% @blocks.each do |block| %>
-    <li>
-      <p>
-        <%= link_to block.title, cohort_block_path(@cohort, block) %> <br />
-        
-        <% if can? :crud, block %>
-          <small>
-            <%= link_to(
-              "Delete",
-              cohort_block_path(@cohort, block),
-              method: :delete,
-              data: {
-                confirm: "Are you sure?"
-              }
-            ) %>
-          </small>
-        <% end %>
-        |
-        <small>
-          Block <%= block.created_at %> ago
-        </small>
-      </p>
-    </li>
+  <%= link_to "#{student.first_name} #{student.last_name}, " , user_path(student.id) %>
   <% end %>
-</ul> 
+</p>
+
+<% if can? :edit, @cohort%>
+  <%= link_to 'Edit Cohort', edit_cohort_path(@cohort), class: "btn btn-secondary btn-sm" %>
+<% end %>
+<% if can? :edit, @cohort%>
+  <%= link_to 'Edit Members', new_cohort_registration_path(@cohort), class: "btn btn-secondary btn-sm" %>
+<% end %>
+  <%= link_to '[View Attendance] - Turn this into a button', cohort_attendance_path(@cohort) %>
+<% if can? :destroy, @cohort%>
+  <%= link_to 'Delete', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
+<% end %>
+
+<% if can? :create, @block%>
+
+  <%= form_with(model: [@cohort, @block], local: true) do |f| %>
+  <% if @block.errors.any? %>
+    <ul>
+      <% @block.errors.full_messages.each do |msg|%>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+    <br/>
+    <h2> Add a new Block</h2>
+    <div class="form-group">
+      <%= f.label :title %>
+      &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+      <%= f.text_field :title %>
+    </div>
+    <div class="form-group">
+      <%= f.label :date %>
+      &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+      <%= f.date_select :date %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :"duration (hours)" %>
+      &emsp; &emsp; &ensp;
+      <%= f.number_field :duration %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :type_of_block %>
+      &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &ensp;
+      &emsp; &emsp; 
+      <%= f.select :type_of_block, ['Lab', 'Lecture', 'Quiz', 'Study'] %>
+    </div>
+
+
+  <%= @block.user %>
+  <%= f.submit "New Block", class: "btn-maroon" %>
+  <% end %>
+<br>
+  <hr />
+
+  <ul class="block-list">
+    <% @blocks.each do |block| %>
+      <li>
+        <p>
+          <%= link_to block.title, cohort_block_path(@cohort, block) %> <br />
+          
+          <% if can? :crud, block %>
+            <small>
+              <%= link_to(
+                "Delete",
+                cohort_block_path(@cohort, block),
+                method: :delete,
+                data: {
+                  confirm: "Are you sure?"
+                }
+              ) %>
+            </small>
+          <% end %>
+          |
+          <small>
+            <%= block.created_at %>
+          </small>
+        </p>
+      </li>
+    <% end %>
+  </ul> 
+
+<% end %>
+<br><br>
+</div>

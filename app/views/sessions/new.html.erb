@@ -1,6 +1,15 @@
 <!-- app/views/sessions/new.html.erb -->
-<div class="background-img-container">
 
+<div class="background-img-container">
+<% if @user.errors.any? %>
+<div class="error-msg">
+<ul>
+    <% @user.errors.full_messages.each do |msg|%>
+        <li><%= msg %></li>
+    <% end %>
+</ul>
+</div>
+<% end %>
 <div class="sign-in-container">
   <div class="form-container card">
       <div class="form-logo">
@@ -9,13 +18,7 @@
       
 
     <div class="sign-in-fields">
-      <% if @user.errors.any? %>
-          <ul>
-              <% @user.errors.full_messages.each do |msg|%>
-                  <li><%= msg %></li>
-              <% end %>
-          </ul>
-      <% end %>
+
     
       <%= form_with url: session_path, local: true do |f|%>
           <div class="form-group">
@@ -24,11 +27,11 @@
           </div>
     
           <div class="form-group">
-            <%= f.label :password_digest %>
+            <%= f.label :password %>
             <%= f.password_field :password_digest, class: "form-control" %>
           </div>
           
-            <%= f.submit "Log In", class: "btn"  %>
+            <%= f.submit "Log In", class: "btn-maroon"  %>
       <% end %>
         </div>
     </div>

@@ -23,8 +23,8 @@
 
 <%= link_to 'Edit', edit_cohort_block_path(@cohort, @block) %> |
 <%= link_to 'Back', cohort_path(@cohort) %>
-
-
+<br>
+<br>
 <%= form_with(model: [:cohort, :block, @attendance], method: :post, local: true) do |form| %>
 <%#= form_with(url: cohort_block_attendances_path(@cohort.id, @block.id), method: :post, local: true) do |form| %>
 
@@ -55,9 +55,9 @@
 
 
   <% end %>
-
+            <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn-maroon' %>
   </div>
 
 <% end %>
