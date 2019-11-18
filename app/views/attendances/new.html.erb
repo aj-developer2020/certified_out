@@ -13,9 +13,9 @@
         <th scope="col"><%= "#{student.first_name} #{student.last_name}" %></th>
           <% @blocks.each do |block| %>
             <% if(Attendance.exists?(user_id: student.id, block_id: block.id)) %>
-              <td scope="col">ok</td>
+              <td scope="col"><%= image_tag("checkmark.png", size: "20x20") %> </td>
             <% else %>
-              <td scope="col"> </td>
+              <td scope="col"><%= image_tag("x.png", size: "20x20") %> </td>
             <% end %>
           <% end %>
       </tr>
