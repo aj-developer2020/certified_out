@@ -57,6 +57,10 @@ class Ability
         can :read, :all
         can [:update], [Cohort]
         can [:create, :read, :update, :delete], [Block]
+        can [:create, :read, :update, :delete], Assignment
+        can [:create, :read, :update, :delete], [Grade]
+        can [:create, :read, :update, :delete], Attendance
+
       elsif user.role===0
         can :show, User
       end
