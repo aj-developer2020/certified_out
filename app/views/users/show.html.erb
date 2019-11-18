@@ -1,44 +1,60 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
+<div class="container d-flex flex-sm-column flex-md-row justify-content-center">
+  <div class="user-show">
+    <% if !@user.picture_url || @user.picture_url == "" %>
+      <%= image_tag("profile-image-placeholder.png", id: "profile-photo")%>
+    <% else %>
+      <img src="<%=@user.picture_url%>" id="profile-photo">
+    <% end %> 
+  </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <div class="user-show" id="user-info">
+    <p>
+      <strong>First name:</strong>
+      <%= @user.first_name %>
+    </p>
+    
+    <p>
+      <strong>Last name:</strong>
+      <%= @user.last_name %>
+    </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+    <p>
+      <strong>Phone:</strong>
+      <%= @user.phone %>
+    </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
+    <p>
+      <strong>User Type:</strong>
+      <% if @user.role == 0 %>
+        Student
+      <% elsif @user.role == 1 %>
+        Instructor
+      <% else %>
+        Admin
+      <% end %>
+    </p>
 
-<p>
-  <strong>Picture url:</strong>
-  <%= @user.picture_url %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <strong>Is active:</strong>
-  <%= @user.is_active %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    <p>
+      <strong>Status:</strong>
+      <% if @user.is_active %>
+        <span class="active">Active</span> 
+      <% else %>
+        <span class="inactive">Inactive</span>
+      <% end %>
+    </p>
+    
+    
+  </div> 
+</div>
+<% if can? :edit, @user %>
+  <div class="text-center py-5">
+      <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-secondary btn-sm" %>
+  </div>
+<%end%>

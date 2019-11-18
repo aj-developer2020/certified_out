@@ -14,7 +14,7 @@
   </head>
 
   <body>
-
+<div class="window-container">
   <% if current_user.present? %>
   <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -22,10 +22,9 @@
 
     <%= link_to image_tag('certified.out_logo.png'), root_path %>
     </div>
+    <div class="nav-bg">
     <ul class="nav navbar-nav">
 
-      
-      <a class="btn btn-light" href="/" role="button">Home</a>
       <% if can? :index, @user%>
       <a class="btn btn-light" href="/users" role="button">Users</a>
       <% end %>
@@ -39,7 +38,7 @@
     </ul>
     <% end %>
   <%#= flash[:notice] || flash[:alert] %>
-
+</div>
     </div>
   <% end %>
 
@@ -56,6 +55,7 @@
 
     <div class="footer-copyright text-center py-3">© 2019 Copyright:
     <a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="footer-link"> Cohort 34</a>
+  </div>
   </div>
   </body>
 </html>

@@ -1,10 +1,21 @@
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Alata|Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Public+Sans&display=swap');
 
 body {
-  background-color: silver;
+  background-color: rgb(211, 211, 211);
+  font-family: 'Public Sans', sans-serif;
 }
+
+.window-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+
 .body-container {
   padding: 2em;
+
 }
 
 .btn.btn-light {
@@ -35,6 +46,8 @@ a:hover {
   text-decoration: none;
 }
 
+
+
 .navbar.navbar-default {
   display: flex;
 
@@ -53,7 +66,7 @@ a:hover {
   display: flex;
   flex-direction: row;
   width: auto;
-  height: 124px;
+  height: 122px;
   justify-content: flex-end;
   background-color: white;
   align-content: center;
@@ -92,16 +105,18 @@ a:hover {
 }
 
 
-.btn {
+.btn-maroon {
   width: 153px;
   height: 50px;
   background: #64182F;
   border-radius: 25px;
   color: white;
-
+  text-align: center;
 }
 
-.btn:hover {
+
+
+.btn-maroon:hover {
   background-color: white;
   color: maroon;
   border: 1px solid #64182F;
@@ -111,6 +126,9 @@ a:hover {
 .footer-copyright.text-center.py-3 {
   background-color: #64182F;
   color: white;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 .footer-link {
@@ -119,8 +137,6 @@ a:hover {
 
 .footer-link:hover {
   color: white;
-<<<<<<< Updated upstream
-=======
 }
 
 .user-show {
@@ -184,7 +200,6 @@ a:hover {
   background-color: #64182F;
 }
 
-.error-msg{
-  background: white;
->>>>>>> Stashed changes
+th, td {
+  text-align: center;
 }

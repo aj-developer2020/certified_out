@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_11_17_025721) do
     t.bigint "user_id"
     t.index ["cohort_id"], name: "index_blocks_on_cohort_id"
     t.index ["user_id"], name: "index_blocks_on_user_id"
-  end
+  end 
 
   create_table "cohorts", force: :cascade do |t|
     t.string "title"

@@ -1,53 +1,55 @@
-<%= form_with(model: cohort, local: true) do |form| %>
-  <% if cohort.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(cohort.errors.count, "error") %> prohibited this cohort from being saved:</h2>
+<div class="container">
+  <%= form_with(model: cohort, local: true) do |form| %>
+    <% if cohort.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(cohort.errors.count, "error") %> prohibited this cohort from being saved:</h2>
 
-      <ul>
-        <% cohort.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% cohort.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :slack %>
+      <%= form.text_area :slack, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :picture_url %>
+      <%= form.text_area :picture_url, class: "form-control" %>
+    </div>
+
+    <div class="form-group py-2">
+      <%= form.label :status %>
+      <%= form.select :status, [['Ongoing', 0], ['Completed', 1], ['Setup', 2], ['Archived', 3]], :class => "form-control" %>
+    </div>
+
+    <div class="form-group py-2">
+      <%= form.label :program %>
+      <%= form.select :program, [['Bootcamp'], ['Fundamentals'], ['One Year Program'], ['Business']], :class => "form-control" %>
+    </div>
+
+
+    <div class="form-group py-2">
+      <%= form.label :start_date %>
+      <%= form.date_select :start_date, class: "form-control" %>
+    </div>
+
+    <div class="actions text-center">
+      <%= form.submit class: 'btn-maroon' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :slack %>
-    <%= form.text_area :slack %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :picture_url %>
-    <%= form.text_area :picture_url %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :program %>
-    <%= form.text_field :program %>
-  </div>
-
-
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

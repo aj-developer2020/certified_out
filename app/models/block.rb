@@ -1,7 +1,7 @@
 class Block < ApplicationRecord
-  before_validation :set_default_start_date
+  before_validation :set_default_date
   before_validation :set_default_duration
-  before_validation :set_default_type
+  before_validation :set_default_type_of_block
 
   belongs_to :cohort
   belongs_to :user
@@ -9,21 +9,21 @@ class Block < ApplicationRecord
   has_many :attendants, through: :attendances, source: :user
 
   validates(:title, presence: true)
-  validates(:start_date, presence: true)
-  validates(:type, presence: true)
+  validates(:date, presence: true)
+  validates(:type_of_block, presence: true)
   validates(:duration, presence: true)
 
 
 
-  def set_default_start_date
-    self.start_date ||=Date.today 
+  def set_default_date
+    self.date ||=Date.today 
   end
 
   def set_default_duration
     self.duration ||= 2
   end
-  def set_default_type
-    self.type ||= "Lecture"
+  def set_default_type_of_block
+    self.type_of_block ||= "Lecture"
   end
 
 end
