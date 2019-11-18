@@ -11,7 +11,7 @@ class GradesController < ApplicationController
       
       grade = Grade.new(user_id: user_id, assignment_id: @assignment.id, score: value)
       if(grade.save)
-        
+        puts "SAVED"
       elsif(Grade.exists?(user_id: user_id, assignment_id: @assignment.id))
         grade = Grade.update(user_id: user_id, assignment_id: @assignment.id, score: value)
 

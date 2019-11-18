@@ -16,7 +16,8 @@
 <%= link_to 'Back', cohort_assignments_path(@cohort), class: "btn btn-secondary btn-sm" %>
 
 <%= link_to 'Edit', edit_cohort_assignment_path(@cohort), class: "btn btn-secondary btn-sm" %>
-
+<br>
+<br>
 
 <%if(@registrations.length!=0 && current_user.role>=1)%>
 
@@ -35,7 +36,7 @@
 
 
       <% if(Grade.exists?(user_id: student.id, assignment_id: @assignment.id)) %>
-        <%grade= Grade.find_by(user_id: student.id, assignment_id: @assignment.id) %>
+        <% grade= Grade.find_by(user_id: student.id, assignment_id: @assignment.id) %>
       <% else %>
         <%grade= Grade.new(user_id: student.id, assignment_id: @assignment.id, score:0)%>
       <% end %>
