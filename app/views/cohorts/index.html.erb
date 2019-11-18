@@ -70,7 +70,15 @@
   </tbody>
 </table>
 
-<br>
+
+
 <% if can? :new , @cohort%>
 <%= link_to 'New Cohort', new_cohort_path, class: "btn btn-maroon" %>
 <% end %>
+<br>
+<br>
+
+<% if can? :new , @cohort%>
+<%= link_to 'New Cohort', new_cohort_path, class: "btn btn-maroon" %>
+<% end %>
+
