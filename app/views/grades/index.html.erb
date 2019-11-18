@@ -1,16 +1,19 @@
 
-<table class="table">
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th>Students</th>
+      <% @assignments.each do |assignment| %>
+        <th scope="col"><%= assignment.title %></th>
+      <% end %>
+    </tr>
+  </thead>
 
-  <tr>
-    <th scope="col"></th>
-    <% @assignments.each do |assignment| %>
-      <th scope="col"><%= assignment.title %></th>
-    <% end %>
-  </tr>
-  <% if current_user.role!=0%>
+  <tbody>
+    <% if current_user.role!=0%>
     <% @users.each do |student| %>
       <tr>
-        <th scope="col"><%= "#{student.first_name} #{student.last_name}" %></th>
+        <td scope="col"><%= "#{student.first_name} #{student.last_name}" %></td>
           <% @assignments.each do |assignment| %>
             <% if(Grade.exists?(user_id: student.id, assignment_id: assignment.id)) %>
               <td scope="col"><%= Grade.find_by(user_id: student.id, assignment_id: assignment.id).score %> </td>
@@ -20,10 +23,10 @@
           <% end %>
       </tr>
     <% end %>
-
-  <% else %>
+  
+    <% else %>
       <tr>
-        <th scope="col"><%= "#{current_user.first_name} #{current_user.last_name}" %></th>
+        <td scope="col"><%= "#{current_user.first_name} #{current_user.last_name}" %></td>
           <% @assignments.each do |assignment| %>
             <% if(Grade.exists?(user_id: current_user.id, assignment_id: assignment.id)) %>
               <td scope="col"><%= Grade.find_by(user_id: current_user.id, assignment_id: assignment.id).score %> </td>
@@ -32,5 +35,8 @@
             <% end %>
           <% end %>
       </tr>
-  <% end %>    
+    <% end %>  
+  </tbody>
+  
 </table>
+<%= link_to 'Back', cohort_path(@cohort), class: "btn btn-secondary btn-sm" %>
