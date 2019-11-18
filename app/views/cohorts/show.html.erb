@@ -72,8 +72,10 @@
 <% end %>
   <%= link_to 'View Attendance', cohort_attendance_path(@cohort), class: "btn btn-secondary btn-sm" %>
   <%= link_to 'View Assignments', cohort_assignments_path(@cohort), class: "btn btn-secondary btn-sm" %>
+  <%= link_to 'View Grades', cohort_grade_path(@cohort), class: "btn btn-secondary btn-sm" %>
+
 <% if can? :destroy, @cohort%>
-  <%= link_to 'Delete', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
+  <%= link_to 'Delete Cohort', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
 <% end %>
 
 <% if can? :create, @block%>

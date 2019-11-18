@@ -9,17 +9,26 @@ class GradesController < ApplicationController
       user_id = user_id.to_i
       value = value.to_i
       
-      if(value != 0)
-        grade = Grade.new(user_id: user_id, assignment_id: @assignment.id)
+      grade = Grade.new(user_id: user_id, assignment_id: @assignment.id, score: value)
+      if(grade.save)
         
-        if grade.save
-          puts "SAVED"
-        end
       elsif(Grade.exists?(user_id: user_id, assignment_id: @assignment.id))
-        Grade.where(user_id:user_id, assignment_id:@assignment.id).destroy_all
+        grade = Grade.update(user_id: user_id, assignment_id: @assignment.id, score: value)
+
+        
       end
     end
     redirect_to cohort_assignment_path(@cohort, @assignment)
+  end
+
+  def index
+    @cohort = Cohort.find(params[:cohort_id])
+    @registrations = Registration.where(cohort_id: @cohort.id).order(user_id: :desc)
+    @users = []
+    for i in @registrations
+      @users.push(User.find_by(id: i.user_id))
+    end
+    @assignments = Assignment.where(cohort_id: @cohort.id)
   end
 
 end
