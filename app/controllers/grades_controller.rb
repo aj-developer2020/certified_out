@@ -15,7 +15,6 @@ class GradesController < ApplicationController
       elsif(Grade.exists?(user_id: user_id, assignment_id: @assignment.id))
         grade = Grade.update(user_id: user_id, assignment_id: @assignment.id, score: value)
 
-        
       end
     end
     redirect_to cohort_assignment_path(@cohort, @assignment)
