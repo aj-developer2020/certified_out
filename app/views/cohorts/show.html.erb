@@ -5,11 +5,11 @@
   <h1 class="cohort-title">  <%= @cohort.title %></h1>
   <br>
 
-    <% if @cohort.picture_url %>
-      <img src="<%= @cohort.picture_url%>" id="profile-photo">
-    <% else %>
-      <%= image_tag("profile-image-placeholder.png", id: "profile-photo")%>
-    <% end %> 
+  <% if !@cohort.picture_url || @cohort.picture_url == "" %>
+  <%= image_tag("cohort-image-placeholder.gif", id: "profile-photo")%>
+<% else %>
+  <img src="<%=@cohort.picture_url%>" id="profile-photo">
+<% end %> 
   </div>
 
   <div class="user-show" id="user-info">
@@ -148,3 +148,4 @@
 <% end %>
 <br><br>
 </div>
+
