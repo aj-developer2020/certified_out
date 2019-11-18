@@ -30,7 +30,6 @@ class UsersController < ApplicationController
   def create
     redirect_to root_path unless can?(:create, current_user)
     @user = User.new(user_params)
-    # afaphpiifa
     if @user.save
       # session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.' 
@@ -120,11 +119,13 @@ class UsersController < ApplicationController
     @user = User.all
     render :index
   end
-  class Integer
-    def to_b?
-      !self.zero?
-    end
+
+  def import
+    aoufbauobfoa
+    User.import(params[:file])
+    redirect_to root_path, notice: "Data imported"
   end
+
   private
     
     # Use callbacks to share common setup or constraints between actions.

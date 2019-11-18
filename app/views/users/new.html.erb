@@ -2,4 +2,14 @@
 
 <%= render 'form', user: @user %>
 
+<h4>Import data from a CSV file</h4>
+
+<%=form_with url: import_user_path, method: :post, multipart: true do |f|%>
+  <%= f.file_field :file %>
+  <%= f.submit "Import CSV" %>
+<% end %>
+<br>
+<br> 
+
+
 <%= link_to 'Back', users_path %>
