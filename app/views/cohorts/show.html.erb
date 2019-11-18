@@ -34,9 +34,11 @@
   <strong>Start date:</strong>
   <%= @cohort.start_date %>
 </p>
+<% if can? :update, @cohort %>
+<%= link_to 'Edit', edit_cohort_path(@cohort) %> 
+<% end %>
 
-<%= link_to 'Edit', edit_cohort_path(@cohort) %> |
-<%= link_to 'Back', cohorts_path %>
+
 
 
  <%= form_with(model: [@cohort, @block], local: true) do |f| %>
