@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post('/cohorts/:cohort_id/blocks/:id/attendances', {to: 'attendances#create', as: :cohort_block_attendances})
 
   post('/cohorts/filter', {to: 'cohorts#filter', as: :filter_cohort})
+  post('/users/filter', {to: 'users#filter', as: :filter_user})
 
   resources :users
 
