@@ -43,6 +43,14 @@
   </tbody>
 </table>
 
+<<<<<<< Updated upstream
 <br>
 
 <%= link_to 'New Cohort', new_cohort_path %>
+=======
+<% if can? :new , @cohort%>
+<%= link_to 'New Cohort', new_cohort_path, class: "btn btn-maroon" %>
+<% end %>
+<br>
+<br>
+>>>>>>> Stashed changes
