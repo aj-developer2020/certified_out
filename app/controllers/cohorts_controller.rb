@@ -3,9 +3,8 @@ class CohortsController < ApplicationController
   before_action :find_cohort, only: [:show, :edit, :update, :destroy]
   before_action :authorize!, only: [:destroy]
 
-  def index
+  def index 
     @cohorts = Cohort.all
-
   end
 
   # GET /cohorts/1
@@ -64,6 +63,13 @@ class CohortsController < ApplicationController
 
   def registered
     @cohorts = current_user.registered_cohorts.order('registrations.created_at DESC')
+  end
+
+  def filter
+    @status=params[:status].to_i
+    @program = params[:program].to_i
+    @cohorts = Cohort.all
+    render :index
   end
 
   private
