@@ -112,8 +112,9 @@
 
     <div class="form-group">
       <%= f.label :type_of_block %>
-      &emsp; &emsp; &emsp; &ensp;
-      <%= f.text_field :type_of_block %>
+      &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &ensp;
+      &emsp; &emsp; 
+      <%= f.select :type_of_block, ['Lab', 'Lecture', 'Quiz', 'Study'] %>
     </div>
 
 
@@ -151,5 +152,5 @@
   </ul> 
 
 <% end %>
-
+<br><br>
 </div>
