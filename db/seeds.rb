@@ -12,7 +12,8 @@ super_user = User.create(
   email: "a@a.a",
   password: "a",
   phone: "44444444444444444",
-  role: 2
+  role: 2,
+  is_active: true
 )
 teacher = User.create(
   first_name: "Smack",
@@ -20,7 +21,9 @@ teacher = User.create(
   email: "b@b.b",
   password: "b",
   phone: "44444444444444444",
-  role: 1
+  role: 1,
+  is_active: true
+
 )
 student = User.create(
   first_name: "Mickey",
@@ -28,14 +31,59 @@ student = User.create(
   email: "c@c.c",
   password: "c",
   phone: "44444444444444444",
-  role: 0
+  role: 0,
+  is_active: true
+
+)
+User.create(
+  first_name: "James",
+  last_name: "John",
+  email: "d@d.d",
+  password: "d",
+  phone: "44444444444444444",
+  role: 0,
+  is_active: true
+)
+User.create(
+  first_name: "Ricky",
+  last_name: "Jones",
+  email: "e@e.e",
+  password: "e",
+  phone: "44444444444444444",
+  role: 0,
+  is_active: true
 )
 
+User.create(
+  first_name: "Asta",
+  last_name: "Marto",
+  email: "f@f.f",
+  password: "f",
+  phone: "44444444444444444",
+  role: 0,
+  is_active: true
+)
+
+User.create(
+  first_name: "Bob",
+  last_name: "Gregoroston",
+  email: "g@g.g",
+  password: "g",
+  phone: "44444444444444444",
+  role: 0,
+  is_active: true
+)
 Cohort.create(
   title: "Cohort 34",
-  program: "Bootcamp",
+  program: "Web Development Bootcamp",
   status: 2,
 )
+Cohort.create(
+  title: "Cohort 35",
+  program: "Web Development Bootcamp",
+  status: 2,
+)
+
 
 
 

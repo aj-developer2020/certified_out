@@ -37,7 +37,7 @@
       <% if(Grade.exists?(user_id: student.id, assignment_id: @assignment.id)) %>
         <%grade= Grade.find_by(user_id: student.id, assignment_id: @assignment.id) %>
       <% else %>
-        <%grade= 0%>
+        <%grade= Grade.new(user_id: student.id, assignment_id: @assignment.id, score:0)%>
       <% end %>
       
       <div class="field">
