@@ -14,7 +14,7 @@ class BlocksController < ApplicationController
     for i in @registrations
       @users.push(User.find_by(id: i.user_id))
     end
-    @attendances = Attendance.where(block_id: @block.id)
+    @attendances = Registration.where(cohort_id: @cohort.id)
 
 
     # @users = User.where(user_id: @registrations.user_id)

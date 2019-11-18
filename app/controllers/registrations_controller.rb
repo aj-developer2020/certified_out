@@ -8,9 +8,8 @@ class RegistrationsController < ApplicationController
     @users = User.where(role: 0).all
     @registration = Registration.new
     @registrations = Registration.where(cohort_id: @cohort.id)
-    puts "------------------------"
-    p @registrations
-    puts "------------------------"
+    
+
   end
  
   def create

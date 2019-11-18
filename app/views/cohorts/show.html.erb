@@ -50,13 +50,6 @@
   <strong>Members:</strong>
   
   <% @users.each do |student| %>
-  <% p "-----------"  %>
-
-  <% p @users  %>
-    <% p @users  %>
-
-      <% p "-----------"  %>
-
 
     <% if student.errors.any? %>
       <div id="error_explanation">
@@ -77,6 +70,7 @@
 <% if can? :edit, @cohort%>
   <%= link_to 'Edit Members', new_cohort_registration_path(@cohort), class: "btn btn-secondary btn-sm" %>
 <% end %>
+  <%= link_to '[View Attendance] - Turn this into a button', cohort_attendance_path(@cohort) %>
 <% if can? :destroy, @cohort%>
   <%= link_to 'Delete', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
 <% end %>
