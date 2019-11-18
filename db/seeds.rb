@@ -6,6 +6,25 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'csv'
+CSV.foreach(Rails.root.join('csfile.csv'), headers: true) do |row|
+  
+  user = User.create({
+    role: row[0],
+    email: row[1],
+    first_name: row[2],
+    last_name: row[3],
+    password_digest: row[4],
+    is_active: row[5],
+    picture_url: row[6],
+    phone: row[7],
+    created_at: row[8],
+    updated_at: row[9]
+  })
+  
+end
+
+
 super_user = User.create(
   first_name: "Donald",
   last_name: "Duck",
