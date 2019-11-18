@@ -2,7 +2,6 @@ class BlocksController < ApplicationController
   before_action :authenticate_user!
   before_action :find_block, only: [:show, :edit, :update, :destroy]
 
-
   # def index
   #   @blocks = Block.all
   # end
