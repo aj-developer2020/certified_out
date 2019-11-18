@@ -1,0 +1,36 @@
+
+<table class="table">
+
+  <tr>
+    <th scope="col"></th>
+    <% @assignments.each do |assignment| %>
+      <th scope="col"><%= assignment.title %></th>
+    <% end %>
+  </tr>
+  <% if current_user.role!=0%>
+    <% @users.each do |student| %>
+      <tr>
+        <th scope="col"><%= "#{student.first_name} #{student.last_name}" %></th>
+          <% @assignments.each do |assignment| %>
+            <% if(Grade.exists?(user_id: student.id, assignment_id: assignment.id)) %>
+              <td scope="col"><%= Grade.find_by(user_id: student.id, assignment_id: assignment.id).score %> </td>
+            <% else %>
+              <td scope="col"> 0 </td>
+            <% end %>
+          <% end %>
+      </tr>
+    <% end %>
+
+  <% else %>
+      <tr>
+        <th scope="col"><%= "#{current_user.first_name} #{current_user.last_name}" %></th>
+          <% @assignments.each do |assignment| %>
+            <% if(Grade.exists?(user_id: current_user.id, assignment_id: assignment.id)) %>
+              <td scope="col"><%= Grade.find_by(user_id: current_user.id, assignment_id: assignment.id).score %> </td>
+            <% else %>
+              <td scope="col"> 0 </td>
+            <% end %>
+          <% end %>
+      </tr>
+  <% end %>    
+</table>
