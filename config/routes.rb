@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       resources :attendances, shallow: true, only: [ :destroy ]
       get :attended, on: :collection
     end
+    resources :assignments do 
+      resources :grades, shallow: true, only: [ :create, :new, :destroy ]
+      get :graded, on: :collection
+    end
     resources :registrations, shallow: true, only: [ :create, :destroy, :new ]
     get :registered, on: :collection
   end

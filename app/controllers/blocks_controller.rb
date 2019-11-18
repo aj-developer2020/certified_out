@@ -20,13 +20,13 @@ class BlocksController < ApplicationController
     # @users = User.where(user_id: @registrations.user_id)
     @attendance = Attendance.new
     # @attendances = Attendance.where(cohort_id: @cohort.id)
-    puts "------------------------"
-    p @cohort
-    puts "------------------------"
-    p @registrations
-    puts "------------------------"
-    p @users
-    puts "------------------------"
+    # puts "------------------------"
+    # p @cohort
+    # puts "------------------------"
+    # p @registrations
+    # puts "------------------------"
+    # p @users
+    # puts "------------------------"
   
     
   end

@@ -1,0 +1,6 @@
+<h1 class="text-center">Editing Assignment</h1>
+
+<%= render 'form', assignment: @assignment %>
+
+<%= link_to 'Show', cohort_assignment_path(@cohort, @assignment) %> |
+<%= link_to 'Back', cohort_assignments_path(@cohort) %>
