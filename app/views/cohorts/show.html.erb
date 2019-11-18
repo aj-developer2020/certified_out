@@ -2,7 +2,6 @@
 
 <p>
   <h1>  <%= @cohort.title %></h1>
-
 </p>
 
 <p>
@@ -34,71 +33,103 @@
   <strong>Start date:</strong>
   <%= @cohort.start_date %>
 </p>
+<p>
+  <strong>Members:</strong>
+  
+  <% @users.each do |student| %>
+  <% p "-----------"  %>
 
-<%= link_to 'Edit', edit_cohort_path(@cohort) %> |
-<%= link_to 'Back', cohorts_path %>
+  <% p @users  %>
+    <% p @users  %>
+
+      <% p "-----------"  %>
 
 
- <%= form_with(model: [@cohort, @block], local: true) do |f| %>
-<% if @block.errors.any? %>
-  <ul>
-    <% @block.errors.full_messages.each do |msg|%>
-      <li><%= msg %></li>
+    <% if student.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  </ul>
-<% end %>
-
-
-  <h2> Add a new Block</h2>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :date %>
-    <%= f.date_select :date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :duration %>
-    <%= f.number_field :duration %>
-  </div>
-
-  <div class="field">
-    <%= f.label :type_of_block %>
-    <%= f.text_field :type_of_block %>
-  </div>
-
-
-<%= @block.user %>
-<%= f.submit "New Block" %>
-<% end %>
-
-<hr />
-
-<ul class="block-list">
-  <% @blocks.each do |block| %>
-    <li>
-      <p>
-        <%= link_to block.title, cohort_block_path(@cohort, block) %> <br />
-        
-        <% if can? :crud, block %>
-          <small>
-            <%= link_to(
-              "Delete",
-              cohort_block_path(@cohort, block),
-              method: :delete,
-              data: {
-                confirm: "Are you sure?"
-              }
-            ) %>
-          </small>
-        <% end %>
-        |
-        <small>
-          Block <%= block.created_at %> ago
-        </small>
-      </p>
-    </li>
+  <%= link_to "#{student.first_name} #{student.last_name}, " , user_path(student.id) %>
   <% end %>
-</ul> 
+</p>
+
+<% if can? :edit, @cohort%>
+  <%= link_to '[Edit Cohort] - Turn this into a button', edit_cohort_path(@cohort) %>
+<% end %>
+<% if can? :edit, @cohort%>
+  <%= link_to '[Add/Remove Members] - Turn this into a button', new_cohort_registration_path(@cohort) %>
+<% end %>
+<% if can? :destroy, @cohort%>
+  <%= link_to '[Destroy] - Turn this into a button', @cohort, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<% if can? :create, @block%>
+  <%= form_with(model: [@cohort, @block], local: true) do |f| %>
+  <% if @block.errors.any? %>
+    <ul>
+      <% @block.errors.full_messages.each do |msg|%>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+    <br/>
+    <h2> Add a new Block</h2>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :date %>
+      <%= f.date_select :date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :"duration (hours)" %>
+      <%= f.number_field :duration %>
+    </div>
+
+    <div class="field">
+      <%= f.label :type_of_block %>
+      <%= f.text_field :type_of_block %>
+    </div>
+
+
+  <%= @block.user %>
+  <%= f.submit "New Block" %>
+  <% end %>
+
+  <hr />
+
+  <ul class="block-list">
+    <% @blocks.each do |block| %>
+      <li>
+        <p>
+          <%= link_to block.title, cohort_block_path(@cohort, block) %> <br />
+          
+          <% if can? :crud, block %>
+            <small>
+              <%= link_to(
+                "Delete",
+                cohort_block_path(@cohort, block),
+                method: :delete,
+                data: {
+                  confirm: "Are you sure?"
+                }
+              ) %>
+            </small>
+          <% end %>
+          |
+          <small>
+            <%= block.created_at %>
+          </small>
+        </p>
+      </li>
+    <% end %>
+  </ul> 
+
+<% end %>

@@ -55,10 +55,10 @@ class Ability
         can :manage, :all
       elsif user.role===1# additional permissions for teachers
         can :read, :all
-        can [:edit, :update], [Cohort]
+        can [:update], [Cohort]
         can [:create, :read, :update, :delete], [Block]
       elsif user.role===0
-        can :show, User, id: user.id 
+        can :show, User
       end
     end
 

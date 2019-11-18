@@ -1,6 +1,78 @@
 <h1 class="text-center">Edit User</h1>
 
-<%= render 'form', user: @user %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class="container d-flex flex-sm-column flex-md-row justify-content-center py-5">
+  <div class="text-center px-5">
+    <div>
+      <% if @user.picture_url %>
+        <img src="<%=@user.picture_url%>" id="profile-photo">
+      <% else %>
+        <%= image_tag("profile-image-placeholder.png", id: "profile-photo")%>
+      <% end %>
+    </div>
+    <div class="h4 py-5">
+        <%= link_to 'Change Password', edit_password_user_path(@user), class: "change-password-link" %>
+    </div>
+  </div>
+  <div class="px-5">
+    <%= form_with(model: @user, local: true) do |form| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+        
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <div class="form-group">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, class: "form-control" %>
+      </div>
+
+      <!-- <div class="form-group"> -->
+        <%# form.label :role %>
+        <%# form.select :role, [['Student', 0], ['Instructor', 1], ['Admin', 2]], :class => "form-control" %>
+      <!-- </div> -->
+      
+      <div class="form-group">
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= form.label :picture_url %>
+        <%= form.text_area :picture_url, class: "form-control" %>
+      </div>
+    
+      <div class="form-group">
+        <%= form.label :phone %>
+        <%= form.text_field :phone, class: "form-control" %>
+      </div>
+    
+      <div class="form-group d-flex flex-row">
+        <%= form.label :is_active %>
+        <%= form.check_box :is_active, class: "form-control" %>
+      </div>
+    
+      <div class="actions text-center">
+        <%= form.submit class: "btn"%>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="container">
+  <%= link_to 'Back', users_path%>  
+</div>
+
+
+
+
