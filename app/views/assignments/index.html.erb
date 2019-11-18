@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+
+  <% @assignments.each do |assignment| %>
+
+    <% if assignment.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% assignment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <%= link_to "#{assignment.title}, " , cohort_assignment_path(@cohort, assignment) %>
+  <% end %>
+  </p>
+
+  <% if can? :new, @assignment%>
+    <%= link_to 'New Assignment', new_cohort_assignment_path(@cohort), class: "btn btn-secondary btn-sm" %>
+  <% end %>
+  <%#= link_to 'View Assignments', cohort_assignments_path(@cohort), class: "btn btn-secondary btn-sm" %>
+  <%# if can? :destroy, @cohort%>
+    <%#= link_to 'Delete', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
+  <%# end %>
+

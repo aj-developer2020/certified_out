@@ -110,6 +110,7 @@ class UsersController < ApplicationController
     @users= User.all
     @role=params[:role].to_i
     @active=params[:is_active].to_i
+    # aofbaof
     if(@active==1)
       @active=true
     else
