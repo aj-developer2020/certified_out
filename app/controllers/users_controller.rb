@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
+ 
   def edit_password
     redirect_to root_path unless can?(:edit_password, current_user)
     # @user=current_user
@@ -105,6 +105,17 @@ class UsersController < ApplicationController
       render :edit_password
     end
   end
+
+  def filter
+    @users= User.all
+    @role=params[:role]
+    if(@role!='')
+      @role=@role.to_i
+    end
+    @user = User.all
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def find_user
