@@ -22,3 +22,7 @@ Certified.Out is a Student Attendance and Marks Management System made collabora
 
 * David & Gurshant
 
+# Acknowledgements
+
+The team would like to thank Logan, Matthew, Andrew and Aansen for their assitance during the project development.
+
