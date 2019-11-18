@@ -19,7 +19,13 @@
 <br>
 <br>
 
+<<<<<<< HEAD
+
+ 
+<%if(@registrations.length!=0)%>
+=======
 <%if(@registrations.length!=0 && current_user.role>=1)%>
+>>>>>>> origin/integration
 
   <%= form_with(model: [:cohort, :assignment, @grade], method: :post, local: true) do |form| %>
     <% @users.each do |student| %>
