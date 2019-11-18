@@ -22,12 +22,11 @@
 
     <%= link_to image_tag('certified.out_logo.png'), root_path %>
     </div>
+    <div class="nav-bg">
     <ul class="nav navbar-nav">
 
-      
-      <a class="btn btn-light" href="/" role="button">Home</a>
       <% if can? :index, @user%>
-      <a class="btn btn-light" href="/users" role="button">Students</a>
+      <a class="btn btn-light" href="/users" role="button">Users</a>
       <% end %>
       <a class="btn btn-light" href="/cohorts" role="button">Cohorts</a>
       <%= link_to "Profile", user_path(current_user.id), class: "btn btn-light" %>
@@ -39,12 +38,15 @@
     </ul>
     <% end %>
   <%#= flash[:notice] || flash[:alert] %>
-
+</div>
     </div>
   <% end %>
 
   </nav>
   <div class="body-container">
+  <%#= flash[:notice] || flash[:alert] %>
+
+
     <%= yield %>
 
   </div>

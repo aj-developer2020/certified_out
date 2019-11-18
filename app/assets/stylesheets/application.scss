@@ -46,6 +46,8 @@ a:hover {
   text-decoration: none;
 }
 
+
+
 .navbar.navbar-default {
   display: flex;
 
@@ -64,7 +66,7 @@ a:hover {
   display: flex;
   flex-direction: row;
   width: auto;
-  height: 124px;
+  height: 122px;
   justify-content: flex-end;
   background-color: white;
   align-content: center;
@@ -103,17 +105,18 @@ a:hover {
 }
 
 
-.btn {
+.btn-maroon {
   width: 153px;
   height: 50px;
   background: #64182F;
   border-radius: 25px;
   color: white;
   text-align: center;
-  
 }
 
-.btn:hover {
+
+
+.btn-maroon:hover {
   background-color: white;
   color: maroon;
   border: 1px solid #64182F;
@@ -191,4 +194,12 @@ a:hover {
 
 .change-password-link {
   color: black;
+}
+
+.btn.btn-secondary.btn-sm {
+  background-color: #64182F;
+}
+
+th, td {
+  text-align: center;
 }

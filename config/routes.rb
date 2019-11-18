@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   post('/cohorts/:cohort_id/blocks/:id/attendances', {to: 'attendances#create', as: :cohort_block_attendances})
   get('/cohorts/:cohort_id/attendance', {to: 'attendances#new', as: :cohort_attendance})
 
+  post('/cohorts/filter', {to: 'cohorts#filter', as: :filter_cohort})
+  post('/users/filter', {to: 'users#filter', as: :filter_user})
+
   resources :users
 
   resource :session, only: [:new, :create, :destroy]

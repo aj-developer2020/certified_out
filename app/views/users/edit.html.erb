@@ -4,11 +4,11 @@
 <div class="container d-flex flex-sm-column flex-md-row justify-content-center py-5">
   <div class="text-center px-5">
     <div>
-      <% if @user.picture_url %>
-        <img src="<%=@user.picture_url%>" id="profile-photo">
-      <% else %>
+      <% if !@user.picture_url || @user.picture_url == "" %>
         <%= image_tag("profile-image-placeholder.png", id: "profile-photo")%>
-      <% end %>
+      <% else %>
+        <img src="<%=@user.picture_url%>" id="profile-photo">
+      <% end %> 
     </div>
     <div class="h4 py-5">
         <%= link_to 'Change Password', edit_password_user_path(@user), class: "change-password-link" %>
@@ -64,7 +64,7 @@
       </div>
     
       <div class="actions text-center">
-        <%= form.submit class: "btn"%>
+        <%= form.submit class: "btn-maroon"%>
       </div>
     <% end %>
   </div>
