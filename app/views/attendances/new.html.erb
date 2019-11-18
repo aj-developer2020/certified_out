@@ -1,36 +1,36 @@
 
-  <% @users.each do |student| %>
-    <% if student.errors.any? %>
-      <div id="error_explanation">
-        <ul>
-          <% student.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+<table class="table">
+
+  <tr>
+    <th scope="col"></th>
+    <% @blocks.each do |block| %>
+      <th scope="col"><%= block.title %></th>
+    <% end %>
+  </tr>
+  <% if current_user.role!=0%>
+    <% @users.each do |student| %>
+      <tr>
+        <th scope="col"><%= "#{student.first_name} #{student.last_name}" %></th>
+          <% @blocks.each do |block| %>
+            <% if(Attendance.exists?(user_id: student.id, block_id: block.id)) %>
+              <td scope="col">ok</td>
+            <% else %>
+              <td scope="col"> </td>
+            <% end %>
           <% end %>
-        </ul>
-      </div>
+      </tr>
     <% end %>
 
-  <table class="table">
-
-  <thead>
-  <tr>
-  <th scope="col">Role</th>
-  <th scope="col">Email</th>
-  <th scope="col">Name</th>
-  <th scope="col">Phone</th>
-  <th scope="col" class="user-status">Status</th>
-  <th scope="col">Actions</th>
-  </tr>
-  </thead>
-
-    <div class="field">
-      <%= student.first_name %>
-      <%#= student.first_nameasdfasdfds %>
-
-    </div>
-  <% end %>
-
-  <div class="actions">
-  </div>
-
+  <% else %>
+      <tr>
+        <th scope="col"><%= "#{current_user.first_name} #{current_user.last_name}" %></th>
+          <% @blocks.each do |block| %>
+            <% if(Attendance.exists?(user_id: current_user.id, block_id: block.id)) %>
+              <td scope="col">ok</td>
+            <% else %>
+              <td scope="col"> </td>
+            <% end %>
+          <% end %>
+      </tr>
+  <% end %>    
 </table>
