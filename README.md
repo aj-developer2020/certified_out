@@ -13,3 +13,12 @@ Certified.Out is a Student Attendance and Marks Management System made collabora
 * Ruby on Rails
 
 * PostgreSQL
+
+# Front-End Team
+
+* Luke & Dustin
+
+# Back-End Team
+
+* David & Gurshant
+
