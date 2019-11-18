@@ -20,44 +20,46 @@
 </p>
 
 
-
 <%= link_to 'Edit', edit_cohort_block_path(@cohort, @block) %> |
 <%= link_to 'Back', cohort_path(@cohort) %>
 <br>
 <br>
-<%= form_with(model: [:cohort, :block, @attendance], method: :post, local: true) do |form| %>
-<%#= form_with(url: cohort_block_attendances_path(@cohort.id, @block.id), method: :post, local: true) do |form| %>
+<%if(@registrations.length!=0)%>
+  <% %>
+  <%= form_with(model: [:cohort, :block, @attendance], method: :post, local: true) do |form| %>
+  <%#= form_with(url: cohort_block_attendances_path(@cohort.id, @block.id), method: :post, local: true) do |form| %>
 
-  <% @users.each do |student| %>
-    
-    <% if student.errors.any? %>
-      <div id="error_explanation">
-        <ul>
-          <% student.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+    <% @users.each do |student| %>
+      
+      <% if student.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% student.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+      <% if(Attendance.exists?(user_id: student.id, block_id: @block.id)) %>
+        <%a= true%>
+      <% else %>
+        <%a= false%>
+      <% end %>
+      
+      <div class="field">
+        <%= form.label :"#{student.id}", "#{student.first_name}" %>
+        <%= form.check_box :"#{student.id}", {:checked => a}  %>
       </div>
-    <% end %>
 
 
-    <% if(Attendance.exists?(user_id: student.id, block_id: @block.id)) %>
-      <%a= true%>
-    <% else %>
-      <%a= false%>
+
     <% end %>
-    
-    <div class="field">
-      <%= form.label :"#{student.id}", "#{student.first_name}" %>
-      <%= form.check_box :"#{student.id}", {:checked => a}  %>
+              <br>
+    <div class="actions">
+      <%= form.submit class: 'btn-maroon' %>
     </div>
 
-
-
   <% end %>
-            <br>
-  <div class="actions">
-    <%= form.submit class: 'btn-maroon' %>
-  </div>
-
-<% end %>
+<%end%>
