@@ -21,11 +21,9 @@ Rails.application.routes.draw do
   post('/cohorts/filter', {to: 'cohorts#filter', as: :filter_cohort})
   post('/users/filter', {to: 'users#filter', as: :filter_user})
 
+  post('/users/import', {to: 'users#import', as: :import_user})
 
-
-  resources :users do 
-    collection{post :import}
-  end
+  resources :users  
 
   resource :session, only: [:new, :create, :destroy]
   get('/', {to: 'home#index', as: :root})

@@ -119,11 +119,13 @@ class UsersController < ApplicationController
     @user = User.all
     render :index
   end
-  class Integer
-    def to_b?
-      !self.zero?
-    end
+
+  def import
+    aoufbauobfoa
+    User.import(params[:file])
+    redirect_to root_path, notice: "Data imported"
   end
+
   private
     
     # Use callbacks to share common setup or constraints between actions.
