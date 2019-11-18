@@ -66,8 +66,11 @@ class CohortsController < ApplicationController
   end
 
   def filter
-    @status=params[:status].to_i
-    @program = params[:program].to_i
+    @status=params[:status]
+    if(@status!='')
+      @status=@status.to_i
+    end
+    @program = params[:program]
     @cohorts = Cohort.all
     render :index
   end
