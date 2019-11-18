@@ -1,6 +1,8 @@
-<p>
-<strong>Title:   </strong> <%= @assignment.title %>
-</p>
+<div class="container">
+
+
+<h1><%= @assignment.title %></h1>
+<hr>
 
 <p>
 <strong>Description:   </strong><%= @assignment.description %>
@@ -14,11 +16,14 @@
 
 
 <%= link_to 'Back', cohort_assignments_path(@cohort), class: "btn btn-secondary btn-sm" %>
-
+<% if current_user.role>=1%>
 <%= link_to 'Edit', edit_cohort_assignment_path(@cohort), class: "btn btn-secondary btn-sm" %>
+<% end %>
 <br>
 <br>
-
+<hr>
+<% if current_user.role>=1%>
+  <h2> Grade</h2>
 <%if(@registrations.length!=0 && current_user.role>=1)%>
 
   <%= form_with(model: [:cohort, :assignment, @grade], method: :post, local: true) do |form| %>
@@ -33,7 +38,7 @@
           </ul>
         </div>
       <% end %>
-
+      <% end %>
 
       <% if(Grade.exists?(user_id: student.id, assignment_id: @assignment.id)) %>
         <% grade= Grade.find_by(user_id: student.id, assignment_id: @assignment.id) %>
@@ -57,3 +62,6 @@
 
   <% end %>
 <%end%>
+</div>
+<br>
+<br>

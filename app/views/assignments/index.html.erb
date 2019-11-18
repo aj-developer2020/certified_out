@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-
+<div class="container">
   <% @assignments.each do |assignment| %>
 
     <% if assignment.errors.any? %>
@@ -14,9 +14,7 @@
     <% end %>
 
     <h2><%= link_to "#{assignment.title}" , cohort_assignment_path(@cohort, assignment) %> <br/></h2>
-        Description: <%= assignment.description %> 
-        <br>
-        Attachment: <%= assignment.attachment %> 
+
         <hr>  
   <% end %>
 
@@ -33,3 +31,4 @@
     <%#= link_to 'Delete', @cohort, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
   <%# end %>
 
+</div>
