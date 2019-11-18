@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_17_025721) do
+ActiveRecord::Schema.define(version: 2019_11_18_045525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.text "attachment"
+    t.bigint "cohort_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cohort_id"], name: "index_assignments_on_cohort_id"
+  end
 
   create_table "attendances", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -35,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_11_17_025721) do
     t.bigint "user_id"
     t.index ["cohort_id"], name: "index_blocks_on_cohort_id"
     t.index ["user_id"], name: "index_blocks_on_user_id"
-  end 
+  end
 
   create_table "cohorts", force: :cascade do |t|
     t.string "title"
@@ -49,6 +59,16 @@ ActiveRecord::Schema.define(version: 2019_11_17_025721) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_cohorts_on_user_id"
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.integer "score"
+    t.bigint "user_id", null: false
+    t.bigint "assignment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["assignment_id"], name: "index_grades_on_assignment_id"
+    t.index ["user_id"], name: "index_grades_on_user_id"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -73,11 +93,14 @@ ActiveRecord::Schema.define(version: 2019_11_17_025721) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "assignments", "cohorts"
   add_foreign_key "attendances", "blocks"
   add_foreign_key "attendances", "users"
   add_foreign_key "blocks", "cohorts"
   add_foreign_key "blocks", "users"
   add_foreign_key "cohorts", "users"
+  add_foreign_key "grades", "assignments"
+  add_foreign_key "grades", "users"
   add_foreign_key "registrations", "cohorts"
   add_foreign_key "registrations", "users"
 end
