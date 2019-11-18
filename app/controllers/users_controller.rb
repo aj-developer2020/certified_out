@@ -108,15 +108,28 @@ class UsersController < ApplicationController
 
   def filter
     @users= User.all
-    @role=params[:role]
-    if(@role!='')
-      @role=@role.to_i
+    @role=params[:role].to_i
+
+    @active=params[:is_active].to_i
+
+    if(@active==1)
+      @active=true
+    else
+      @active=false
     end
+
+    
     @user = User.all
     render :index
+    # asofbapfap
   end
-
+  class Integer
+    def to_b?
+      !self.zero?
+    end
+  end
   private
+    
     # Use callbacks to share common setup or constraints between actions.
     def find_user
       @user = User.find(params[:id])

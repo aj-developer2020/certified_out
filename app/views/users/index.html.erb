@@ -7,6 +7,12 @@
     <%= form.label :role %>
     <%= form.select :role, [[''],['Student', 0], ['Instructor', 1], ['Admin', 2]], :class => "form-control" %>
   </div>
+
+  <div class="form-group">
+    <%= form.label :is_active %>
+    <%= form.check_box :is_active, class: "form-control" %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Filter',class: 'btn' %>
   </div>
@@ -28,7 +34,7 @@
 </tr>
 </thead>
 <% @users.each do |user| %>
-  <% if(!@role || @role=='' || @role==user.role)%>
+  <% if(!@role || @role=='' && @active==user.is_active|| @role==user.role && @active==user.is_active)%>
     <% if can? :index, user%>
       <tr>
       <td class="td-user-role"><% if user.role == 0 %>
