@@ -7,8 +7,15 @@ body {
   font-family: 'Public Sans', sans-serif;
 }
 
+.window-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+
 .body-container {
   padding: 2em;
+
 }
 
 .btn.btn-light {
@@ -115,6 +122,9 @@ a:hover {
 .footer-copyright.text-center.py-3 {
   background-color: #64182F;
   color: white;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 .footer-link {
@@ -176,4 +186,8 @@ a:hover {
 
 .inactive {
   color: red;
+}
+
+.change-password-link {
+  color: black;
 }

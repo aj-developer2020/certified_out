@@ -34,14 +34,46 @@
   <strong>Start date:</strong>
   <%= @cohort.start_date %>
 </p>
-<% if can? :update, @cohort %>
-<%= link_to 'Edit', edit_cohort_path(@cohort) %> 
+<p>
+  <strong>Members:</strong>
+  
+  <% @users.each do |student| %>
+  <% p "-----------"  %>
+
+  <% p @users  %>
+    <% p @users  %>
+
+      <% p "-----------"  %>
+
+
+    <% if student.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <%= link_to "#{student.first_name} #{student.last_name}, " , user_path(student.id) %>
+  <% end %>
+</p>
+
+
+
+<% if can? :edit, @cohort%>
+  <%= link_to '[Edit Cohort] - Turn this into a button', edit_cohort_path(@cohort) %>
+<% end %>
+<% if can? :edit, @cohort%>
+  <%= link_to '[Add/Remove Members] - Turn this into a button', new_cohort_registration_path(@cohort) %>
+<% end %>
+<% if can? :destroy, @cohort%>
+  <%= link_to '[Destroy] - Turn this into a button', @cohort, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 
 
-
- <%= form_with(model: [@cohort, @block], local: true) do |f| %>
+<%= form_with(model: [@cohort, @block], local: true) do |f| %>
 <% if @block.errors.any? %>
   <ul>
     <% @block.errors.full_messages.each do |msg|%>
@@ -49,7 +81,6 @@
     <% end %>
   </ul>
 <% end %>
-
 
   <h2> Add a new Block</h2>
   <div class="field">
