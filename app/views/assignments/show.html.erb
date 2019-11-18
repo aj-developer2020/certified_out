@@ -18,7 +18,7 @@
 <%= link_to 'Edit', edit_cohort_assignment_path(@cohort), class: "btn btn-secondary btn-sm" %>
 
 
-
+ 
 <%if(@registrations.length!=0)%>
 
   <%= form_with(model: [:cohort, :assignment, @grade], method: :post, local: true) do |form| %>

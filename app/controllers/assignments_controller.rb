@@ -3,7 +3,7 @@ class AssignmentsController < ApplicationController
   before_action :find_cohort, only: [:show, :create, :edit, :index, :destroy, :show]
   before_action :find_assignment, only: [:show, :edit, :destroy]
 
-
+ 
   def index
     @cohort = Cohort.find(params[:cohort_id])
     @assignments = Assignment.all

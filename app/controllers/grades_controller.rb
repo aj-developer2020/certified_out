@@ -1,6 +1,6 @@
 class GradesController < ApplicationController
   
-  def create
+  def create 
     @assignment = Assignment.find(params[:id])
     @cohort = Cohort.find(params[:cohort_id])
 
