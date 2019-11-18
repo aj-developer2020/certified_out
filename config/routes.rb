@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   patch('/users/:id/update_password', {to: 'users#update_password', as: :update_password_user})
   post('/cohorts/:cohort_id/blocks/:id/attendances', {to: 'attendances#create', as: :cohort_block_attendances})
 
+  post('/cohorts/filter', {to: 'cohorts#filter', as: :filter_cohort})
 
   resources :users
 
