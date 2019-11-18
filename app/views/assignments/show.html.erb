@@ -16,3 +16,44 @@
 <%= link_to 'Back', cohort_assignments_path(@cohort), class: "btn btn-secondary btn-sm" %>
 
 <%= link_to 'Edit', edit_cohort_assignment_path(@cohort), class: "btn btn-secondary btn-sm" %>
+
+
+
+<%if(@registrations.length!=0)%>
+
+  <%= form_with(model: [:cohort, :assignment, @grade], method: :post, local: true) do |form| %>
+
+    <% @users.each do |student| %>
+      
+      <% if student.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% student.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+      <% if(Grade.exists?(user_id: student.id, assignment_id: @assignment.id)) %>
+        <%grade= Grade.find_by(user_id: student.id, assignment_id: @assignment.id) %>
+      <% else %>
+        <%grade= 0%>
+      <% end %>
+      
+      <div class="field">
+        <%= form.label :"#{student.id}", "#{student.first_name}" %>
+        <%= form.number_field :"#{student.id}", :value => grade  %>
+      </div>
+
+
+
+    <% end %>
+              <br>
+    <div class="actions">
+      <%= form.submit class: 'btn-maroon' %>
+    </div>
+
+  <% end %>
+<%end%>

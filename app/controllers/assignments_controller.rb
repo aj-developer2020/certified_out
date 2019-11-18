@@ -35,9 +35,16 @@ class AssignmentsController < ApplicationController
   end
 
   def show
+    @registrations = Registration.where(cohort_id: @cohort.id)
 
+    @users = []
+    for i in @registrations
+      @users.push(User.find_by(id: i.user_id))
+    end
+    @grades = Registration.where(cohort_id: @cohort.id)
+
+    @grade = Grade.new
     
-
   end
 
   private
