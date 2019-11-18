@@ -10,12 +10,12 @@ class BlocksController < ApplicationController
   def show
     @cohort = Cohort.find(params[:cohort_id])
     @registrations = Registration.where(cohort_id: @cohort.id)
+    # afoba
     @users = []
     for i in @registrations
       @users.push(User.find_by(id: i.user_id))
     end
     @attendances = Registration.where(cohort_id: @cohort.id)
-
 
     # @users = User.where(user_id: @registrations.user_id)
     @attendance = Attendance.new

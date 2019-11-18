@@ -1,65 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<!-- <h1>Users</h1> -->
 
 <%= form_with(url: filter_user_path, local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :role %>
-    <%= form.select :role, [[''],['Student', 0], ['Instructor', 1], ['Admin', 2]], :class => "form-control" %>
-  </div>
-  <div class="actions">
-    <%= form.submit 'Filter',class: 'btn' %>
+  <div class="d-flex flex-row justify-content-end align-content-center">
+    <div class="form-group px-2">
+      <%= form.label :role, class: "pr-2" %>
+      <%= form.select :role, [['Select Filter'],['Student', 0], ['Instructor', 1], ['Admin', 2]], :class => "form-control" %>
+    </div>
+  
+    <div class="form-group px-2">
+      <%= form.label :is_active, class: "pr-2" %>
+      <%= form.select :is_active, [['Select Filter'],['Active', 1], ['Inactive', 0]] %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit 'Filter',class: 'btn btn-dark' %>
+    </div>
   </div>
 <% end %>
 
-
-<br>
-
-<table class="table">
-
-<thead>
-<tr>
-<th scope="col">Role</th>
-<th scope="col">Email</th>
-<th scope="col">Name</th>
-<th scope="col">Phone</th>
-<th scope="col" class="user-status">Status</th>
-<th scope="col">Actions</th>
-</tr>
-</thead>
-<% @users.each do |user| %>
-  <% if(!@role || @role=='' || @role==user.role)%>
-    <% if can? :index, user%>
-      <tr>
-      <td class="td-user-role"><% if user.role == 0 %>
-        Student
-      <% elsif user.role == 1 %>
-        Instructor
-      <% else %>
-        Admin
-      <% end %></td>
-        <td class="td-user-email"><%= user.email %></td>
-        <td class="td-user-name"><%= user.first_name %> <%= user.last_name %></td>
-        <td class="td-user-phone"><%= user.phone %></td>
-        <td class="td-user-active"> <% if user.is_active %>
-            <p class="active"> Active </p>
-        <% else %>
-            <p class="inactive"> Inactive </p>
-        <% end %></td>
-        <% if can? :show, user%>
-        <td><%= link_to 'Show', user, class: "btn btn-secondary btn-sm" %>
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+    <th scope="col">Role</th>
+    <th scope="col">Email</th>
+    <th scope="col">Name</th>
+    <th scope="col">Phone</th>
+    <th scope="col" class="user-status">Status</th>
+    <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <% if(!@role || @role=='' && @active==user.is_active|| @role==user.role && @active==user.is_active)%>
+        <% if can? :index, user%>
+          <tr>
+          <td class="td-user-role"><% if user.role == 0 %>
+            Student
+          <% elsif user.role == 1 %>
+            Instructor
+          <% else %>
+            Admin
+          <% end %></td>
+            <td class="td-user-email"><%= user.email %></td>
+            <td class="td-user-name"><%= user.first_name %> <%= user.last_name %></td>
+            <td class="td-user-phone"><%= user.phone %></td>
+            <td class="td-user-active"> <% if user.is_active %>
+                <p class="active"> Active </p>
+            <% else %>
+                <p class="inactive"> Inactive </p>
+            <% end %></td>
+            <% if can? :show, user%>
+            <td><%= link_to 'Show', user, class: "btn btn-secondary btn-sm" %>
+            <% end %>
+            <% if can? :edit, user%>
+            <%= link_to 'Edit', edit_user_path(user), class: "btn btn-secondary btn-sm" %>
+            <% end %>
+            <% if can? :edit, user%>
+            <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %></td>
+            <% end %>
+          </tr>
         <% end %>
-        <% if can? :edit, user%>
-        <%= link_to 'Edit', edit_user_path(user), class: "btn btn-secondary btn-sm" %>
-        <% end %>
-        <% if can? :edit, user%>
-        <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %></td>
-        <% end %>
-      </tr>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
-
   </tbody>
 </table>
 <br>

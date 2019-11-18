@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   def create
     redirect_to root_path unless can?(:create, current_user)
     @user = User.new(user_params)
+    # afaphpiifa
     if @user.save
       # session[:user_id] = @user.id
       redirect_to @user, notice: 'User was successfully created.' 
@@ -108,15 +109,24 @@ class UsersController < ApplicationController
 
   def filter
     @users= User.all
-    @role=params[:role]
-    if(@role!='')
-      @role=@role.to_i
+    @role=params[:role].to_i
+    @active=params[:is_active].to_i
+    # aofbaof
+    if(@active==1)
+      @active=true
+    else
+      @active=false
     end
     @user = User.all
     render :index
   end
-
+  class Integer
+    def to_b?
+      !self.zero?
+    end
+  end
   private
+    
     # Use callbacks to share common setup or constraints between actions.
     def find_user
       @user = User.find(params[:id])
