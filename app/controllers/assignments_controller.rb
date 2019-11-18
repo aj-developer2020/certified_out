@@ -1,6 +1,6 @@
 class AssignmentsController < ApplicationController
 
-  before_action :find_cohort, only: [:show, :create, :edit, :index, :destroy]
+  before_action :find_cohort, only: [:show, :create, :edit, :index, :destroy, :show]
   before_action :find_assignment, only: [:show, :edit, :destroy]
 
 
@@ -33,6 +33,14 @@ class AssignmentsController < ApplicationController
     end
 
   end
+
+  def show
+
+    
+
+  end
+
+  private
 
   def find_cohort
     @cohort = Cohort.find(params[:cohort_id])
