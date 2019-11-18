@@ -26,7 +26,7 @@
     <ul class="nav navbar-nav">
 
       <% if can? :index, @user%>
-      <a class="btn btn-light" href="/users" role="button">Students</a>
+      <a class="btn btn-light" href="/users" role="button">Users</a>
       <% end %>
       <a class="btn btn-light" href="/cohorts" role="button">Cohorts</a>
       <%= link_to "Profile", user_path(current_user.id), class: "btn btn-light" %>
@@ -44,6 +44,9 @@
 
   </nav>
   <div class="body-container">
+  <%#= flash[:notice] || flash[:alert] %>
+
+
     <%= yield %>
 
   </div>
