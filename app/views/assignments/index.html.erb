@@ -19,8 +19,10 @@
         Attachment: <%= assignment.attachment %> 
         <hr>  
   <% end %>
-   
-  <% if can? :new, @assignment%>
+
+
+  <% if current_user.role>=1%>
+
     <%= link_to 'New Assignment', new_cohort_assignment_path(@cohort), class: "btn btn-secondary btn-sm" %>
   <% end %>
   <%#= link_to 'View Assignments', cohort_assignments_path(@cohort), class: "btn btn-secondary btn-sm" %>
