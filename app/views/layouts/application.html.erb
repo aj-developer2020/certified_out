@@ -14,48 +14,37 @@
   </head>
 
   <body>
-<div class="window-container">
-  <% if current_user.present? %>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-
-    <%= link_to image_tag('certified.out_logo.png'), root_path %>
-    </div>
-    <div class="nav-bg">
-    <ul class="nav navbar-nav">
-
-      <% if can? :index, @user%>
-      <a class="btn btn-light" href="/users" role="button">Users</a>
+    <div class="window-container">
+      <% if current_user.present? %>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <%= link_to image_tag('certified.out_logo.png'), root_path %>
+            </div>
+            <div class="nav-bg">
+              <ul class="nav navbar-nav">
+                <% if can? :index, @user%>
+                  <a class="btn btn-light" href="/users" role="button">Users</a>
+                <% end %>
+                  <a class="btn btn-light" href="/cohorts" role="button">Cohorts</a>
+                <%= link_to "Profile", user_path(current_user.id), class: "btn btn-light" %>
+                <% if user_signed_in?%>
+                  <%= link_to "Sign Out", session_path, method: :delete, class: "btn btn-light",
+                  data: {confirm: "Are you sure you want to log out?"}%>
+                <% end %>
+              </ul>
+            </div>
+            <%#= flash[:notice] || flash[:alert] %>
+          </div>
+        </nav>
       <% end %>
-      <a class="btn btn-light" href="/cohorts" role="button">Cohorts</a>
-      <%= link_to "Profile", user_path(current_user.id), class: "btn btn-light" %>
-
-      <% if user_signed_in?%>
-<%= link_to "Sign Out", session_path, method: :delete, class: "btn btn-light",
-        data: {confirm: "Are you sure you want to log out?"}%>
-    
-    </ul>
-    <% end %>
-  <%#= flash[:notice] || flash[:alert] %>
-</div>
+      <div class="body-container">
+        <%#= flash[:notice] || flash[:alert] %>
+        <%= yield %>
+      </div>
+      <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="footer-link"> Cohort 34</a>
+      </div>
     </div>
-  <% end %>
-
-  </nav>
-  <div class="body-container">
-  <%#= flash[:notice] || flash[:alert] %>
-
-
-    <%= yield %>
-
-  </div>
-
-
-
-    <div class="footer-copyright text-center py-3">© 2019 Copyright:
-    <a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="footer-link"> Cohort 34</a>
-  </div>
-  </div>
   </body>
 </html>
