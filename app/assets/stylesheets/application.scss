@@ -119,4 +119,72 @@ a:hover {
 
 .footer-link:hover {
   color: white;
+<<<<<<< Updated upstream
+=======
+}
+
+.user-show {
+  padding: 5px 30px;
+}
+
+#profile-photo {
+  width: 250px;
+  height: auto;
+}
+
+#user-info {
+  text-align: left;
+}
+
+  .home-bg {
+  background: url('home-bg');
+  background-size: cover;
+  min-height: 100vh;
+  filter: grayscale(60%);
+  display: flex;
+  flex-direction: column;
+
+}
+
+.home-h1 {
+  color: white;
+  padding-left: 1.6em;
+  padding-bottom: 1em;
+  padding-top: 3em;
+  font-family: 'Alata', sans-serif;
+  font-size: 3em;
+}
+
+.home-p {
+  color: whitesmoke;
+  padding: 3em;
+  font-size: 1.5em;
+  font-family: 'Lato', sans-serif;
+
+}
+
+.home-text {
+  background-color: rgba(0, 0, 0, 0.308);
+  min-height: inherit;
+}
+
+.active {
+  color: green;
+}
+
+.inactive {
+  color: red;
+}
+
+.change-password-link {
+  color: black;
+}
+
+.btn.btn-secondary.btn-sm {
+  background-color: #64182F;
+}
+
+.error-msg{
+  background: white;
+>>>>>>> Stashed changes
 }
