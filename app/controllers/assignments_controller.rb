@@ -23,7 +23,7 @@ class AssignmentsController < ApplicationController
     @cohort = Cohort.find(params[:cohort_id])
     @assignment = Assignment.new(assignment_params)
     @assignment.cohort = @cohort
-    @assignment.user_id = current_user
+    @assignment.user_id = current_user.id
 
     if @assignment.save
       redirect_to cohort_assignments_path(@cohort), notice: 'Assignment was successfully created.' 
@@ -41,6 +41,7 @@ class AssignmentsController < ApplicationController
     for i in @registrations
       @users.push(User.find_by(id: i.user_id))
     end
+    # sajdfiosajdfiojsidoafF
     @grades = Registration.where(cohort_id: @cohort.id)
 
     @grade = Grade.new

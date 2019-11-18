@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get('/cohorts/:cohort_id/attendance', {to: 'attendances#new', as: :cohort_attendance})
 
   post('/cohorts/:cohort_id/assignments/:id/grades', {to: 'grades#create', as: :cohort_assignment_grades})
+  get('/cohorts/:cohort_id/grades', {to: 'grades#index', as: :cohort_grade})
 
 
   post('/cohorts/filter', {to: 'cohorts#filter', as: :filter_cohort})

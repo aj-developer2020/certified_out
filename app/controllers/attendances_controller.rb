@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   # before_action :authorize_user!, only: [ :create ]
 
   def new
-    # redirect_to root_path unless can?(:index, current_user)
+    # redirect_to root_path unless can?(:new, current_user)
     @cohort = Cohort.find(params[:cohort_id])
     # @block = Block.find(params[:block_id])
     @registrations = Registration.where(cohort_id: @cohort.id).order(user_id: :desc)
