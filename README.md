@@ -2,25 +2,37 @@
 
 # Description
 
-Certified.Out is a Student Attendance and Marks Management System made collaboratively by a team of 5 students, over the course of 3 days. It is able to  handle various management tasks including but not limited to addition and removal of new students to the system per cohort,grading assignments,tracking of cohorts that each student is part of and keeping track of each student's attendance in the database
+Certified.Out is a Student Management System made collaboratively by a team of 5 students, over the course of 3 days. It is able to  handle various administrative management tasks. The system has in-built functionality to check for which role(admin, instructor, student) a user has, and give them different functionality depending upon the user signed in. The system is able to create users, assign users to many classes, take attendance, create assignments, and grade assignments.
+
+#### Users
+
+#### Class
+
+#### Attendance
+
+#### Assignments
 
 # Technologies
+
+* Ruby on Rails
 
 * HTML & CSS
 
 * Bootstrap
 
-* Ruby on Rails
-
 * PostgreSQL
 
-# Front-End Team
+# Development Team 
 
-* Luke & Dustin
+* David 
 
-# Back-End Team
+* Gurshant 
 
-* David & Gurshant
+* Luke 
+
+* Dustin
+
+* Aanshik
 
 # Acknowledgements
 
