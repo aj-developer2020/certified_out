@@ -2,7 +2,7 @@
 
 ## Cloning Project
 ```
-Add instructions here like, bundle ect,
+Add instructions here like bundle, ect
 ```
 
 ## Description
@@ -11,13 +11,13 @@ Certified.Out is a Student Management System made collaboratively by a team of 5
 
 #### Users
 
-* Only an administrator, can create a User
+* Only an administrator can create a user
 
-* A student can edit, his profile, but cannot change his role.
+* A student can edit his profile, but cannot change his role.
 
 #### Class
 
-* Only an admininistrator can create a Class
+* Only an admininistrator can create a class
 
 * Instructors and administrators can edit the class. They can also add and remove students.
 
@@ -25,22 +25,23 @@ Certified.Out is a Student Management System made collaboratively by a team of 5
 
 #### Block
 
-* An instructor can create a block(Lecture, lab, etc.). 
+* An instructor can create a block (.ecture, lab, etc.). 
 
-* One day could have multiple blocks. 
+* One day can have multiple blocks. 
+
 #### Attendance
 
 * Instructors can create attendance for specific blocks.
 
-* Student's can only view, their own attenance.
+* Students can only view their own attenance.
 
 #### Assignments
 
-* Instructors can create assignments for the class
+* Instructors can create assignments for the class.
 
 * Students can view all assignments.
 
-* Instructors can add grades, for each created assignment.
+* Instructors can add grades for each created assignment.
 
 * Students can only view their own grades.
 
@@ -68,5 +69,5 @@ Certified.Out is a Student Management System made collaboratively by a team of 5
 
 ## Acknowledgements
 
-The team would like to thank Logan, Matthew, Andrew and Aansen for their assitance during the project development.
+The team would like to thank Logan, Matthew, Andrew, and Aansen for their assitance during the project development.
 
