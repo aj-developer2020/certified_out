@@ -11,11 +11,38 @@ Certified.Out is a Student Management System made collaboratively by a team of 5
 
 #### Users
 
+* Only an administrator, can create a User
+
+* A student can edit, his profile, but cannot change his role.
+
 #### Class
 
+* Only an admininistrator can create a Class
+
+* Instructors and administrators can edit the class. They can also add and remove students.
+
+* Students can only view classes they are assigned to. 
+
+#### Block
+
+* An instructor can create a block(Lecture, lab, etc.). 
+
+* One day could have multiple blocks. 
 #### Attendance
 
+* Instructors can create attendance for specific blocks.
+
+* Student's can only view, their own attenance.
+
 #### Assignments
+
+* Instructors can create assignments for the class
+
+* Students can view all assignments.
+
+* Instructors can add grades, for each created assignment.
+
+* Students can only view their own grades.
 
 ## Technologies
 
