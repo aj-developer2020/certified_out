@@ -38,8 +38,7 @@
           </ul>
         </div>
       <% end %>
-      <% end %>
-
+      
       <% if(Grade.exists?(user_id: student.id, assignment_id: @assignment.id)) %>
         <% grade= Grade.find_by(user_id: student.id, assignment_id: @assignment.id) %>
       <% else %>
@@ -51,14 +50,18 @@
         <%= form.number_field :"#{student.id}", :value => grade.score %>
 
       </div>
-
-
-
-    <% end %>
-              <br>
+      <br/>
     <div class="actions">
       <%= form.submit class: 'btn-maroon' %>
     </div>
+
+      
+    <% end %>
+
+ 
+
+
+    <% end %>
 
   <% end %>
 <%end%>

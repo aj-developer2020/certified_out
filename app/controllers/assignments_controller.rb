@@ -41,7 +41,6 @@ class AssignmentsController < ApplicationController
     for i in @registrations
       @users.push(User.find_by(id: i.user_id))
     end
-    # sajdfiosajdfiojsidoafF
     @grades = Registration.where(cohort_id: @cohort.id)
 
     @grade = Grade.new
